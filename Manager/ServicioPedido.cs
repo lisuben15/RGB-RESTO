@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio
+namespace Manager
 {
-    public class Gerente
+    internal class ServicioPedido
     {
-        public int IdGerente { get; set; }
     }
 }

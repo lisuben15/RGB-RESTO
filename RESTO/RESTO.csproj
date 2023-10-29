@@ -68,6 +68,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.aspx" />
+    <Content Include="GestionUsuarios.aspx" />
+    <Content Include="Gestion_Asignacion_Mesa.aspx" />
+    <Content Include="Gestion_Menu.aspx" />
+    <Content Include="Gestion_Mesa_Pedido.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -78,6 +82,34 @@
     </Compile>
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionUsuarios.aspx.cs">
+      <DependentUpon>GestionUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionUsuarios.aspx.designer.cs">
+      <DependentUpon>GestionUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gestion_Asignacion_Mesa.aspx.cs">
+      <DependentUpon>Gestion_Asignacion_Mesa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gestion_Asignacion_Mesa.aspx.designer.cs">
+      <DependentUpon>Gestion_Asignacion_Mesa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gestion_Menu.aspx.cs">
+      <DependentUpon>Gestion_Menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gestion_Menu.aspx.designer.cs">
+      <DependentUpon>Gestion_Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gestion_Mesa_Pedido.aspx.cs">
+      <DependentUpon>Gestion_Mesa_Pedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gestion_Mesa_Pedido.aspx.designer.cs">
+      <DependentUpon>Gestion_Mesa_Pedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

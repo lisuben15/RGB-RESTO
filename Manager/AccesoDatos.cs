@@ -19,7 +19,8 @@ namespace Manager
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=DESKTOP-2360JBV\\\\SQLEXPRESS1; database=BD_Resto; integrated security=true\");");
+          //  conexion = new SqlConnection("server=DESKTOP-2360JBV\\\\SQLEXPRESS1; database=BD_Resto; integrated security=true\");");
+            conexion = new SqlConnection("server=localhost; database=Resto; integrated security=false; user=sa; password=123456");
             comando = new SqlCommand();
         }
 
@@ -43,11 +44,42 @@ namespace Manager
                 throw ex;
             }
         }
+
+        public void ejecutarAccion()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
         public void cerrarConexion()
         {
             if (conexion != null)
                 lector.Close();
             conexion.Close();
         }
+
+
+        public void setearProcedimiento(string sp)
+        {
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = sp;
+        }
+
+
+        public void setearParametros(string nombre, object valor)
+        {
+            comando.Parameters.AddWithValue(nombre, valor);
+        }
+
     }
 }

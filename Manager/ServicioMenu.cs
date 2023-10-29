@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio
+namespace Manager
 {
-    public class Mesero
+    internal class ServicioMenu
     {
-        public int IdMesero { get; set; }
-        public string Reporte { get; set; }
     }
-
-
 }

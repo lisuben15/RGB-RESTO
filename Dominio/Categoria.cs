@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class MarcaBebidas
+    public class Categoria
     {
-         public int IdMarca {  get; set; }
-         public string NombreMarca { get; set; }
+        public int IdCategoria  { get; set; }
+        public string Descripcion { get; set; }
     }
 }
