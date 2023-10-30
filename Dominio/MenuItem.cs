@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Menu
+    public class MenuItem
     {
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }

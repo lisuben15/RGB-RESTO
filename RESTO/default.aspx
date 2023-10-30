@@ -68,8 +68,9 @@
         </div>
 
         <div>
-            <asp:Button ID="Button1" runat="server" Text="Ingresar" CssClass="styled-button" />
+            <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" CssClass="styled-button" OnClick="btnIngresar_Click" />
         </div>
+            
     </form>
 </body>
 </html>
