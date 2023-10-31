@@ -5,6 +5,10 @@
 
     <h1>ADMINISTRACIÓN</h1>
 
-
+    <asp:GridView ID="dgvUsuario" style="width:100px; height:100px" runat="server"></asp:GridView>
+    <asp:Button ID="btnAgregar" runat="server" Text="Button" />
+    <asp:Button ID="btnModificar" runat="server" Text="Button" />
+    <asp:Button ID="btnEliminar" runat="server" Text="Button" />
     
+
 </asp:Content>
