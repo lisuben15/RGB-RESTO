@@ -10,7 +10,7 @@ namespace Dominio
     {
         public int NumeroMesa {  get; set; }
         public bool Estado {  get; set; }
-        public int IdMesero { get; set; }
+        public int IdUsuario { get; set; }
         
     }
 }

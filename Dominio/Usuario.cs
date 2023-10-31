@@ -14,7 +14,7 @@ namespace Dominio
         public int Dni {  get; set; }
         public string Contrasenia{ get; set;}
         public DateTime FechaCreacion { get; set; }
-        public int IdPerfil { get; set; }
+        public Perfil Perfil { get; set; }
     }
 }
 
