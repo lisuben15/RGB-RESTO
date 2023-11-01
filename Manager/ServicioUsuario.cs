@@ -76,7 +76,7 @@ namespace Manager
                     aux.IdUsuario = (int)datos.Lector["IdUsuario"];                // Mapear
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Apellido = (string)datos.Lector["Apellido"];
-                    aux.Dni = (int)datos.Lector["Dni"];
+                    aux.Dni = (string)datos.Lector["Dni"];
                     aux.Contrasenia = (string)datos.Lector["Contrasenia"];
                     aux.FechaCreacion = (DateTime)datos.Lector["FechaCreacion"];
 

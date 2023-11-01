@@ -13,13 +13,15 @@
 
     <style>
        body {
-    background-image: url('https://image.freepik.com/foto-gratis/mesa-madera-desenfoque-fondo-restaurante-moderno_31965-1670.jpg');
+    background-image: url('https://img.freepik.com/fotos-premium/mesa-madera-restaurante-borrosa-fondo_81724-265.jpg?w=740');
     background-size: 110% auto; 
     background-position: center center; 
     background-repeat: no-repeat;
        }
 
     </style>
+ 
+   
 
 </head>
 <body>
@@ -54,7 +56,7 @@
     </div>
   </div>
 </nav>
-        <h1>master page</h1>
+        
         
 
         
