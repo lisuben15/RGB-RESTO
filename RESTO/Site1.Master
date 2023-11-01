@@ -49,6 +49,9 @@
           <a class="nav-link" href="#">Reportes</a>
         </li>
           <li class="nav-item">
+          <a class="nav-link" href="#">Asignar Mesa</a>
+        </li> 
+          <li class="nav-item">
           <a class="nav-link" href="#">Cierre del dia</a>
         </li>
         
