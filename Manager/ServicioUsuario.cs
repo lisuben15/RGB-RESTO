@@ -126,5 +126,12 @@ namespace Manager
             }
         }
 
+         public int ObtenerTipoDeUsuario(string Dni, string Contrasenia)
+        {
+            int valorPerfil = 1;
+
+            return valorPerfil;
+        }
+
     }
 }

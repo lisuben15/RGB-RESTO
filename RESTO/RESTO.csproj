@@ -73,6 +73,8 @@
     <Content Include="Gestion_Menu.aspx" />
     <Content Include="Gestion_Mesa_Pedido.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="PaginaGerente.aspx" />
+    <Content Include="PaginaMesero.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +115,20 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="PaginaGerente.aspx.cs">
+      <DependentUpon>PaginaGerente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaginaGerente.aspx.designer.cs">
+      <DependentUpon>PaginaGerente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaginaMesero.aspx.cs">
+      <DependentUpon>PaginaMesero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaginaMesero.aspx.designer.cs">
+      <DependentUpon>PaginaMesero.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site1.Master.cs">

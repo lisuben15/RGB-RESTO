@@ -50,6 +50,16 @@
             font-size: 18px;
             font-family: Arial, sans-serif;
         }
+
+        .error-label {
+            text-align: center; 
+            font-size: 18px;  
+            color: white;
+            background-color: black; 
+            padding: 10px;     
+            border: 2px solid black;
+        }
+
     </style>
 </head>
 <body>
@@ -58,18 +68,25 @@
             <h1>RGB-Resto</h1>
         </div>
         <div class="input-container">
+            
+
             <asp:Label ID="Label1" runat="server" Text="Usuario" CssClass="input-label"></asp:Label>
-            <asp:TextBox ID="TextBox3" runat="server" type="text"></asp:TextBox>
+            <asp:TextBox ID="TxtUsuario" runat="server" type="text"></asp:TextBox>
         </div>
 
         <div class="input-container">
             <asp:Label ID="Label2" runat="server" Text="Contraseña" CssClass="input-label"></asp:Label>
-            <asp:TextBox ID="TextBox4" runat="server" type="password"></asp:TextBox>
+            <asp:TextBox ID="TxtPassword" runat="server" type="password"></asp:TextBox>
         </div>
 
         <div>
             <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" CssClass="styled-button" OnClick="btnIngresar_Click" />
         </div>
+        <br />
+        <div>
+        <asp:Label ID="LblError" runat="server" Text=" " CssClass="error-label"></asp:Label>
+        </div>
+
             
     </form>
 </body>
