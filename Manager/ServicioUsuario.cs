@@ -9,7 +9,7 @@ namespace Manager
 {
     public class ServicioUsuario
     {
-        public void AgregarUsuario(Usuario usuario)
+        public void AgregarUsuario(Usuario usuario) // recordar que cambio el sp de agregarUsuario
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -19,9 +19,7 @@ namespace Manager
                 datos.setearParametros("@Nombre", usuario.Nombre);
                 datos.setearParametros("@Apellido",usuario.Apellido);
                 datos.setearParametros("@Dni",usuario.Dni);
-                datos.setearParametros("@Contrasenia",usuario.Contrasenia);
-                datos.setearParametros("@FechaCreacion",usuario.FechaCreacion);
-                datos.setearParametros("@Perfil",usuario.Perfil.IdPerfil);   
+                datos.setearParametros("@IdPerfil",usuario.Perfil.IdPerfil);   
                 datos.ejecutarAccion();
 
             }
@@ -161,6 +159,13 @@ namespace Manager
             }
         }
 
+
+         public int ObtenerTipoDeUsuario(string Dni, string Contrasenia)
+        {
+            int valorPerfil = 1;
+
+            return valorPerfil;
+        }
 
     }
 }

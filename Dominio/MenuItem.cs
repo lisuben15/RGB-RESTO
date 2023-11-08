@@ -11,7 +11,7 @@ namespace Dominio
         public int IdMenu {  get; set; }
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
-        public int IDCategoria { get; set; }
+        public Categoria Categoria { get; set; }
         public bool RequiereStock { get; set; }
         public int Stock {  get; set; } 
 

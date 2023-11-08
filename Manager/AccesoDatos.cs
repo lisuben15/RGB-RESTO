@@ -65,8 +65,16 @@ namespace Manager
         public void cerrarConexion()
         {
             if (conexion != null)
+            {
+               
+                conexion.Close();
+            }
+            if (lector != null)
+            {
                 lector.Close();
-            conexion.Close();
+                
+            }
+
         }
 
 

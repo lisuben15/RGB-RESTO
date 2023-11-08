@@ -33,13 +33,13 @@ namespace RESTO
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// TextBox3 control.
+        /// Control TxtUsuario.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox TxtUsuario;
 
         /// <summary>
         /// Label2 control.
@@ -51,13 +51,13 @@ namespace RESTO
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// TextBox4 control.
+        /// Control TxtPassword.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox TxtPassword;
 
         /// <summary>
         /// ltNotify control.
@@ -85,5 +85,14 @@ namespace RESTO
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnIngresar;
+
+        /// <summary>
+        /// Control LblError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblError;
     }
 }
