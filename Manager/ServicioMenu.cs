@@ -18,7 +18,7 @@ namespace Manager
                 datos.setearProcedimiento("sp_AgregarMenuItem");
                 datos.setearParametros("@Descripcion", menuItem.Descripcion);
                 datos.setearParametros("@Precio", menuItem.Precio);
-                datos.setearParametros("@IdCategoria", menuItem.IDCategoria);
+                datos.setearParametros("@IdCategoria", menuItem.Categoria.IdCategoria);
                 datos.setearParametros("@RequiereStock", menuItem.RequiereStock);
                 datos.setearParametros("@Stock", menuItem.Stock);
                 datos.ejecutarAccion();
@@ -75,7 +75,7 @@ namespace Manager
                     aux.IdMenu = (int)datos.Lector["IdMenu"];                // Mapear
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Precio= (decimal)datos.Lector["Precio"];
-                    aux.IDCategoria = (int)datos.Lector["IdCategoria"];
+                    aux.Categoria.IdCategoria = (int)datos.Lector["IdCategoria"];
                     aux.RequiereStock = (bool)datos.Lector["RequiereStock"];
                     aux.Stock = (int)datos.Lector["Stock"];
 
@@ -104,7 +104,7 @@ namespace Manager
                 datos.setearParametros("@IdMenu", menuItem.IdMenu);
                 datos.setearParametros("@Descripcion", menuItem.Descripcion);
                 datos.setearParametros("@Precio", menuItem.Precio);
-                datos.setearParametros("@IdCategoria", menuItem.IDCategoria);
+                datos.setearParametros("@IdCategoria", menuItem.Categoria.IdCategoria);
                 datos.setearParametros("@RequiereStock", menuItem.RequiereStock);
                 datos.setearParametros("@Stock", menuItem.Stock);
                 datos.ejecutarAccion();

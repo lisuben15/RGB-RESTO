@@ -49,9 +49,9 @@ namespace RESTO
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            ServicioUsuario servicioUsuario = new ServicioUsuario();
-            int IdUsuario = int.Parse(Session["IdUsuario"].ToString());
-            servicioUsuario.ModificarUsuario();
+            //ServicioUsuario servicioUsuario = new ServicioUsuario();
+            //int IdUsuario = int.Parse(Session["IdUsuario"].ToString());
+            //servicioUsuario.ModificarUsuario();
         }
     }
 }

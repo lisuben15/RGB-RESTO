@@ -42,7 +42,7 @@ namespace RESTO
                 {
                 // En caso de una autenticación fallida, mostrar un mensaje de error o redirigir a una página de error.
                  LblError.Text = "El usuario no está registrado!  ";
-            }
+                }
         }
             
 

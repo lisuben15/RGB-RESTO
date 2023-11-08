@@ -6,17 +6,12 @@
     
     <h2>Empleados</h2>
 
-   <%-- <style> 
-        .oculto{ 
-            display: none;
-        }
 
-    </style>--%>
 
     <asp:GridView ID="dgvUsuario" runat="server" AutoGenerateColumns="false" DataKeyNames="IdUsuario" OnSelectedIndexChanged="dgvUsuario_SelectedIndexChanged" class="table table-dark table-striped">
 
         <columns>
-           <%-- <asp:BoundField HeaderText="ID" DataField="IdUsuario" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />--%>
+           
             <asp:BoundField HeaderText="Nombre" DataField="Nombre"/>
             <asp:BoundField HeaderText="Apellido" DataField="Apellido"/>
             <asp:BoundField HeaderText="Dni" DataField="Dni"/>

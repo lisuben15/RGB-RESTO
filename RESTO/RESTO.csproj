@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AgregarMenu.aspx" />
     <Content Include="AgregarUsuario.aspx" />
     <Content Include="default.aspx" />
     <Content Include="GestionUsuarios.aspx" />
@@ -79,6 +80,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarMenu.aspx.cs">
+      <DependentUpon>AgregarMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarMenu.aspx.designer.cs">
+      <DependentUpon>AgregarMenu.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AgregarUsuario.aspx.cs">
       <DependentUpon>AgregarUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
