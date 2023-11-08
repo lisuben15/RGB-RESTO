@@ -24,7 +24,15 @@
             color: black; 
             text-shadow: 4px 4px 4px white;
         }
-            
+
+        h2 {
+            font-size: 15px;
+            font-family:Arial, sans-serif ;
+            color: white; 
+            text-shadow: 1px 1px 1px blue;
+            text-align: center; 
+        }
+           
 
         .input-container {
             margin: 15px 0;
@@ -50,6 +58,7 @@
             font-size: 18px;
             font-family: Arial, sans-serif;
         }
+
     </style>
 </head>
 <body>
@@ -66,6 +75,8 @@
             <asp:Label ID="Label2" runat="server" Text="Contraseña" CssClass="input-label"></asp:Label>
             <asp:TextBox ID="TextBox4" runat="server" type="password"></asp:TextBox>
         </div>
+        <h2><asp:Literal runat="server" ID="ltNotify" /></h2>
+        <h2><asp:Literal runat="server" ID="ltNotify1" /></h2>
 
         <div>
             <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" CssClass="styled-button" OnClick="btnIngresar_Click" />

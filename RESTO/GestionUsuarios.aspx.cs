@@ -12,10 +12,36 @@ namespace RESTO
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ServicioUsuario servicioUsuario = new ServicioUsuario();
-            List<Usuario> lista = servicioUsuario.ListarUsuarios(); 
-            dgvUsuario.DataSource = servicioUsuario.ListarUsuarios();
-            dgvUsuario.DataBind();
+            if (!ValidarAccesoPagina(1))
+            {
+                Server.Transfer("default.aspx");
+            }
+            else
+            {
+                ServicioUsuario servicioUsuario = new ServicioUsuario();
+                List<Usuario> lista = servicioUsuario.ListarUsuarios();
+                dgvUsuario.DataSource = servicioUsuario.ListarUsuarios();
+                dgvUsuario.DataBind();
+            }
+        }
+        public bool ValidarAccesoPagina(int perfil)
+        {
+            if ((Session["usuario"] == null) || (Session["perfil"] == null) || ((int)Session["perfil"] > perfil))
+            {
+                if ((Session["perfil"] != null) && (Session["usuario"] != null))
+                {
+                    Response.Write("<script>alert('El usuario no posee el permiso suficiente para acceder a esta pagina.')</script>");
+                }
+                if (Session["usuario"] == null)
+                {
+                    Response.Write("<script>alert('Por favor, acceda con su usuario y contraseña.')</script>");
+                }
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

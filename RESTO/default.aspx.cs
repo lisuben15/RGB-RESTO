@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,12 +12,36 @@ namespace RESTO
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("GestionUsuarios.aspx");
+            Manager.ServicioUsuario usuario = new Manager.ServicioUsuario();
+            int perfil = usuario.Loguear(TextBox3.Text, TextBox4.Text);
+            if(perfil!=0){
+                Session.Add("usuario", usuario);
+                Session.Add("perfil", perfil);
+                switch(perfil) 
+                {
+                    case 1:
+                        Response.Redirect("GestionUsuarios.aspx");
+                    break;
+                    case 2:
+                        Response.Redirect("Gestion_Menu.aspx");
+                    break;
+                    
+                    default:
+                        // code block
+                    break;}
+            }
+            else
+            {
+                ltNotify.Text = "Usuario o contraseña incorrectos.";
+                ltNotify1.Text = "Por favor, verifique sus datos";
+            }
         }
+
+              
     }
 }

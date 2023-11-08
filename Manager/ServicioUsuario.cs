@@ -125,6 +125,42 @@ namespace Manager
                 datos.cerrarConexion();
             }
         }
+        public int Loguear(string dni, string contrasenia)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int login = 0;
+            try
+            {
+                datos.setearConsulta("SELECT * FROM Usuarios WHERE Dni=@Dni AND Contrasenia=@Contrasenia");
+                datos.setearParametros("@Dni",dni);
+                datos.setearParametros("@Contrasenia",contrasenia);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    if ((string)datos.Lector["Dni"] == dni)
+                    {
+                        if ((string)datos.Lector["Contrasenia"] == contrasenia)
+                        {
+                            login = (int)datos.Lector["IdPerfil"];
+                        }
+                    }
+                }
+                else
+                {
+                    return login;
+                }
+                return login;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
     }
 }
