@@ -13,14 +13,15 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
       
         <ContentTemplate>
-             <asp:DropDownList ID="ddlCategorias" runat="server" OnSelectedIndexChanged="ddlCategorias_SelectedIndexChanged" AutoPostBack="true">
-            </asp:DropDownList>
+             <asp:DropDownList ID="ddlCategorias" runat="server" OnSelectedIndexChanged="ddlCategorias_SelectedIndexChanged" AutoPostBack="true"> </asp:DropDownList>
 
         <asp:GridView ID="dgvMenu" runat="server" AutoGenerateColumns="false" DataKeyNames="IdMenu" OnSelectedIndexChanged="dgvMenu_SelectedIndexChanged"  class="table table-dark table-striped">
 
             <columns>   
                 <asp:BoundField HeaderText="Descripcion" DataField="Descripcion"/>
                 <asp:BoundField HeaderText="Precio" DataField="Precio"/>
+               <%-- <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion"/>--%>
+
                 <asp:commandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion"/>
             </columns>
         </asp:GridView>

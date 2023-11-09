@@ -18,6 +18,8 @@ namespace RESTO
         {
             if (!IsPostBack)
             {
+
+
                 ddlCategorias.DataSource = servicioCategoria.ListarCategoria();
 
                 ddlCategorias.DataTextField = "Descripcion";
@@ -40,7 +42,11 @@ namespace RESTO
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-
+            if (Session["IdMenu"]!= null) {
+                string IdMenu = Session["IdMenu"].ToString();
+                Response.Redirect("AgregarMenu.aspx?id=" + IdMenu);
+            }
+          
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)

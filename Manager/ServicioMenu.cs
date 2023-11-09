@@ -102,7 +102,7 @@ namespace Manager
 
             try
             {
-                datos.setearProcedimiento("sp_ModificarMenuItem");
+                datos.setearProcedimiento("sp_ModificarElementoMenu");
                 datos.setearParametros("@IdMenu", menuItem.IdMenu);
                 datos.setearParametros("@Descripcion", menuItem.Descripcion);
                 datos.setearParametros("@Precio", menuItem.Precio);
@@ -122,5 +122,49 @@ namespace Manager
                 datos.cerrarConexion();
             }
         }
+
+
+        public ElementoMenu ObtenerElementoMenuPorId(int Id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_ObtenerElementoMenuPorId");
+                datos.setearParametros("@Id", Id);
+                datos.ejecutarLectura();
+
+                datos.Lector.Read();
+
+                ElementoMenu aux = new ElementoMenu();
+                aux.IdMenu = (int)datos.Lector["IdMenu"];                // Mapear
+                aux.Descripcion = (string)datos.Lector["Descripcion"];
+                aux.Precio = (decimal)datos.Lector["Precio"];
+
+                aux.Categoria = new Categoria();
+                aux.Categoria.IdCategoria = (int)datos.Lector["IdCategoria"];
+                aux.Categoria.Descripcion = (string)datos.Lector["Descripcion"];
+
+                aux.RequiereStock = (Boolean)datos.Lector["RequiereStock"];
+                aux.Stock = (int)datos.Lector["Stock"];
+
+                return aux;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
+
+
+
     }
 }

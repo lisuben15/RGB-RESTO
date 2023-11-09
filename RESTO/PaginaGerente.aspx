@@ -3,4 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Pagina de Gerentes</h1>
+
+    <p> CUANDO SE REIGISTRE UN GERENTE DEBE VENIR A ESTA PAGINA</p>
 </asp:Content>

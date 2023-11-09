@@ -27,7 +27,9 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1> Pagina de agregado de menu</h1>
+
+
+         <h1> Pagina de agregado de menu</h1>
 
     <div class="form-group">
         <asp:Label ID="lblDescripcion" runat="server" Text="   Descripcion: "></asp:Label>

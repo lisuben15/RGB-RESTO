@@ -63,8 +63,7 @@ namespace RESTO
 
         protected void dgvUsuario_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //int idUsuario = int.Parse(dgvUsuario.SelectedRow.Cells[0].Text);
-            // int idUsuario = int.Parse(dgvUsuario.SelectedDataKey.Value.ToString());
+            
             Session["IdUsuario"] = dgvUsuario.SelectedDataKey.Value.ToString();
         }
 
@@ -75,9 +74,9 @@ namespace RESTO
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            //ServicioUsuario servicioUsuario = new ServicioUsuario();
-            //int IdUsuario = int.Parse(Session["IdUsuario"].ToString());
-            //servicioUsuario.ModificarUsuario();
+            string IdUsuario = Session["IdUsuario"].ToString();
+            Response.Redirect("AgregarUsuario.aspx?id=" + IdUsuario);
+
         }
     }
 }

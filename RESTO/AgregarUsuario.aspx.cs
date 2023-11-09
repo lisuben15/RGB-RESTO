@@ -13,11 +13,30 @@ namespace RESTO
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (!IsPostBack)
+            {
+                if (Request.QueryString["id"] != null)
+                {
+                    ServicioUsuario servicioUsuario = new ServicioUsuario();
+                    int idUsuario = int.Parse(Request.QueryString["id"]);
+                    Usuario usuario = servicioUsuario.ObtenerUsuarioPorId(idUsuario);
+
+                    txtNombre.Text = usuario.Nombre;
+                    txtApellido.Text = usuario.Apellido;
+                    txtDni.Text = usuario.Dni;
+                    ddlOpciones.SelectedValue = usuario.Perfil.IdPerfil.ToString();
+
+                }
+
+
+            }
+
         }
 
-        protected void btnAgregar_Click(object sender, EventArgs e)
+        protected void btnGuardar_Click(object sender, EventArgs e)
         {
             ServicioUsuario servicioUsuario = new ServicioUsuario();
+
             Usuario usuario = new Usuario();
 
             usuario.Nombre = txtNombre.Text;
@@ -26,7 +45,16 @@ namespace RESTO
             usuario.Perfil = new Perfil();
             usuario.Perfil.IdPerfil = int.Parse(ddlOpciones.SelectedValue);
 
-            servicioUsuario.AgregarUsuario(usuario);
+            if (Request.QueryString["id"] == null)
+            {
+                servicioUsuario.AgregarUsuario(usuario);
+            }
+            else
+            {
+                usuario.IdUsuario = int.Parse(Request.QueryString["id"]);
+                servicioUsuario.ModificarUsuario(usuario);
+            }
+            
             Response.Redirect("GestionUsuarios.aspx"); // sacar esto luego 
 
         }

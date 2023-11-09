@@ -58,6 +58,44 @@ namespace Manager
             }
         }
 
+        public Usuario ObtenerUsuarioPorId(int Id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            
+            try
+            {
+                datos.setearProcedimiento("sp_ObtenerUsuarioPorId");
+                datos.setearParametros("@Id",Id);
+                datos.ejecutarLectura();
+
+                datos.Lector.Read();
+
+                Usuario aux = new Usuario();
+                aux.IdUsuario = (int)datos.Lector["IdUsuario"];                // Mapear
+                aux.Nombre = (string)datos.Lector["Nombre"];
+                aux.Apellido = (string)datos.Lector["Apellido"];
+                aux.Dni = (string)datos.Lector["Dni"];
+                aux.Contrasenia = (string)datos.Lector["Contrasenia"];
+                aux.FechaCreacion = (DateTime)datos.Lector["FechaCreacion"];
+
+                aux.Perfil = new Perfil();
+                aux.Perfil.IdPerfil = (int)datos.Lector["IdPerfil"];
+                aux.Perfil.Descripcion = (string)datos.Lector["Descripcion"];
+
+
+                return aux;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public List<Usuario> ListarUsuarios()
         {
             List<Usuario> lista = new List<Usuario>();
@@ -107,9 +145,7 @@ namespace Manager
                 datos.setearParametros("@IdUsuario",usuario.IdUsuario);
                 datos.setearParametros("@Nombre",usuario.Nombre);
                 datos.setearParametros("@Apellido",usuario.Apellido);
-                datos.setearParametros("@Dni",usuario.Dni);
-                datos.setearParametros("@Contrasenia",usuario.Contrasenia);
-                datos.setearParametros("@FechaCreacion",usuario.FechaCreacion);           
+                datos.setearParametros("@Dni",usuario.Dni);                        
                 datos.setearParametros("@IdPerfil",usuario.Perfil.IdPerfil);          
                 datos.ejecutarAccion();
             }

@@ -3,4 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Pagina de Meseros</h1>
+
+    <p> CUANDO SE REGISTRE UN MESERO DEBE VENIR A ESTA PAGINA</p>
+
 </asp:Content>

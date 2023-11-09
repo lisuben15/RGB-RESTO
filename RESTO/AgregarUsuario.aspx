@@ -52,7 +52,14 @@
         </asp:DropDownList>
     </div>
 
-    <div class="submit-btn">
-        <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="styled-button" OnClick="btnAgregar_Click" />
-    </div>
+    
+
+    <asp:Button ID="btnGuardar" runat="server" Text="Guardar"  CssClass="styled-button" OnClick="btnGuardar_Click"/>
+
+    
+   
+
+
+
+
 </asp:Content>

@@ -13,7 +13,24 @@ namespace RESTO
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (Request.QueryString["id"] != null)
+                {
+                    ServicioMenu servicioMenu = new ServicioMenu();
+                    int idMenu = int.Parse(Request.QueryString["id"]);
+                    ElementoMenu menu = servicioMenu.ObtenerElementoMenuPorId(idMenu);
 
+                    txtDescripcion.Text = menu.Descripcion;
+                    txtPrecio.Text = menu.Precio.ToString();
+                    ddlOpciones.SelectedValue = menu.Categoria.IdCategoria.ToString();
+                    txtRequiereStock.Text = menu.RequiereStock.ToString();
+                    txtStock.Text = menu.Stock.ToString();
+
+                }
+
+
+            }
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
@@ -22,14 +39,25 @@ namespace RESTO
             ElementoMenu elementoMenu = new ElementoMenu();
 
             elementoMenu.Descripcion = txtDescripcion.Text;
-            elementoMenu.Precio = int.Parse(txtPrecio.Text);
+            elementoMenu.Precio = decimal.Parse(txtPrecio.Text);
             elementoMenu.Categoria = new Categoria();
             elementoMenu.Categoria.IdCategoria = int.Parse(ddlOpciones.SelectedValue);
-            elementoMenu.RequiereStock = txtRequiereStock.Text == "1";
+            elementoMenu.RequiereStock = bool.Parse(txtRequiereStock.Text);
             elementoMenu.Stock = int.Parse(txtStock.Text);
             servicioMenu.AgregarElementoMenu(elementoMenu);
-            Response.Redirect("Gestion_Menu.aspx"); // sacar esto luego 
 
+            if (Request.QueryString["id"] == null)
+            {
+                servicioMenu.AgregarElementoMenu(elementoMenu);
+            }
+            else
+            {
+                elementoMenu.IdMenu = int.Parse(Request.QueryString["id"]);
+                servicioMenu.ModificarElementoMenu(elementoMenu);
+            }
+
+                Response.Redirect("Gestion_Menu.aspx"); // sacar esto luego 
+ 
         }
     }
 }

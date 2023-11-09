@@ -9,9 +9,11 @@ namespace Dominio
     public class Mesa
     {
         public int NumeroMesa {  get; set; }
-        public bool Estado {  get; set; }
+        public EstadoMesa Estado {  get; set; }
         public int IdUsuario { get; set; }
-        
+        public DateTime FechaCreacion { get; set; }
+
+
     }
 }
 

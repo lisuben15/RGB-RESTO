@@ -87,12 +87,12 @@ namespace RESTO
         protected global::System.Web.UI.WebControls.DropDownList ddlOpciones;
 
         /// <summary>
-        /// Control btnAgregar.
+        /// Control btnGuardar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregar;
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
     }
 }
