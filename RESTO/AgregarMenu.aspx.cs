@@ -18,7 +18,18 @@ namespace RESTO
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            
+            ServicioMenu servicioMenu = new ServicioMenu();
+            ElementoMenu elementoMenu = new ElementoMenu();
+
+            elementoMenu.Descripcion = txtDescripcion.Text;
+            elementoMenu.Precio = int.Parse(txtPrecio.Text);
+            elementoMenu.Categoria = new Categoria();
+            elementoMenu.Categoria.IdCategoria = int.Parse(ddlOpciones.SelectedValue);
+            elementoMenu.RequiereStock = txtRequiereStock.Text == "1";
+            elementoMenu.Stock = int.Parse(txtStock.Text);
+            servicioMenu.AgregarElementoMenu(elementoMenu);
+            Response.Redirect("Gestion_Menu.aspx"); // sacar esto luego 
+
         }
     }
 }

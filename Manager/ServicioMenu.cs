@@ -9,18 +9,18 @@ namespace Manager
 {
     public class ServicioMenu
     {
-        public void AgregarMenuItem(MenuItem menuItem)
+        public void AgregarElementoMenu(ElementoMenu menu)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearProcedimiento("sp_AgregarMenuItem");
-                datos.setearParametros("@Descripcion", menuItem.Descripcion);
-                datos.setearParametros("@Precio", menuItem.Precio);
-                datos.setearParametros("@IdCategoria", menuItem.Categoria.IdCategoria);
-                datos.setearParametros("@RequiereStock", menuItem.RequiereStock);
-                datos.setearParametros("@Stock", menuItem.Stock);
+                datos.setearProcedimiento("sp_AgregarElementoMenu");
+                datos.setearParametros("@Descripcion", menu.Descripcion);
+                datos.setearParametros("@Precio", menu.Precio);
+                datos.setearParametros("@IdCategoria", menu.Categoria.IdCategoria);
+                datos.setearParametros("@RequiereStock", menu.RequiereStock);
+                datos.setearParametros("@Stock", menu.Stock);
                 datos.ejecutarAccion();
 
             }
@@ -35,7 +35,7 @@ namespace Manager
             }
         }
 
-        public void EliminarMenuItem(int IdMenu)
+        public void EliminarElementoMenu(int IdMenu)
         {
 
             AccesoDatos datos = new AccesoDatos();
@@ -59,22 +59,24 @@ namespace Manager
             }
         }
 
-        public List<MenuItem> ListarMenuItem()
+        public List<ElementoMenu> ListarElementoMenu(int idCategoria)
         {
-            List<MenuItem> lista = new List<MenuItem>();
+            List<ElementoMenu> lista = new List<ElementoMenu>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearProcedimiento("sp_ListarMenuItem");
+                datos.setearProcedimiento("sp_ListarElementoMenu");
+                datos.setearParametros("@idCategoria", idCategoria);
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
 
-                    MenuItem aux = new MenuItem();
+                    ElementoMenu aux = new ElementoMenu();
                     aux.IdMenu = (int)datos.Lector["IdMenu"];                // Mapear
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Precio= (decimal)datos.Lector["Precio"];
+                    aux.Categoria = new Categoria();
                     aux.Categoria.IdCategoria = (int)datos.Lector["IdCategoria"];
                     aux.RequiereStock = (bool)datos.Lector["RequiereStock"];
                     aux.Stock = (int)datos.Lector["Stock"];
@@ -94,7 +96,7 @@ namespace Manager
             }
         }
 
-        public void ModificarMenuItem(MenuItem menuItem)
+        public void ModificarElementoMenu(ElementoMenu menuItem)
         {
             AccesoDatos datos = new AccesoDatos();
 
