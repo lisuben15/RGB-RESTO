@@ -70,6 +70,8 @@
     <Content Include="AgregarMenu.aspx" />
     <Content Include="AgregarUsuario.aspx" />
     <Content Include="default.aspx" />
+    <Content Include="GestionMesa.aspx" />
+    <Content Include="GestionMesa_a_Mesero.aspx" />
     <Content Include="GestionUsuarios.aspx" />
     <Content Include="Gestion_Asignacion_Mesa.aspx" />
     <Content Include="Gestion_Menu.aspx" />
@@ -100,6 +102,20 @@
     </Compile>
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionMesa.aspx.cs">
+      <DependentUpon>GestionMesa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionMesa.aspx.designer.cs">
+      <DependentUpon>GestionMesa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionMesa_a_Mesero.aspx.cs">
+      <DependentUpon>GestionMesa_a_Mesero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionMesa_a_Mesero.aspx.designer.cs">
+      <DependentUpon>GestionMesa_a_Mesero.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionUsuarios.aspx.cs">
       <DependentUpon>GestionUsuarios.aspx</DependentUpon>

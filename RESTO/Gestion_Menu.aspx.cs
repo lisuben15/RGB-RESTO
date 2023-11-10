@@ -52,6 +52,24 @@ namespace RESTO
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
 
+            if ((Session["IdMenu"] == null))
+            {
+                Response.Write("<script>alert('No se seleccionó Menú para eliminar.')</script>");
+            }
+            else
+            {
+                try
+                {
+                    ServicioMenu servicioMenu = new ServicioMenu();
+
+                    int IdMenu = int.Parse(Session["IdMenu"].ToString());
+                    servicioMenu.EliminarElementoMenu(IdMenu);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         protected void dgvMenu_SelectedIndexChanged(object sender, EventArgs e)

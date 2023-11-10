@@ -41,7 +41,7 @@ namespace Manager
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearProcedimiento("sp_EliminarMenuItem");
+                datos.setearProcedimiento("sp_EliminarElementoMenu");
                 datos.setearParametros("@IdMenu", IdMenu);
                 datos.ejecutarAccion();
 

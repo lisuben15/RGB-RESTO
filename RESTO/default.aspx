@@ -6,6 +6,15 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>RGB-Resto</title>
+    <script type="text/javascript">
+        function TriggerButtonClick(e, buttonId) {
+            if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+                document.getElementById(buttonId).click();
+                return false;
+            }
+            return true;
+        }
+    </script>
     <style>
         body {
             background-image: url('https://wallpaperaccess.com/full/3692914.jpg'); 
@@ -27,12 +36,11 @@
 
         h2 {
             font-size: 15px;
-            font-family:Arial, sans-serif ;
+            font-family: Arial, sans-serif ;
             color: white; 
             text-shadow: 1px 1px 1px blue;
             text-align: center; 
         }
-           
 
         .input-container {
             margin: 15px 0;
@@ -57,6 +65,12 @@
             margin-left: 135px;
             font-size: 18px;
             font-family: Arial, sans-serif;
+            outline: none; /* Elimina el contorno predeterminado en el foco */
+        }
+
+        .styled-button:focus {
+            outline: none;
+            box-shadow: 0 0 10px #719ECE;
         }
 
         .error-label {
@@ -67,7 +81,6 @@
             padding: 10px;     
             border: 2px solid black;
         }
-
     </style>
 </head>
 <body>
@@ -76,8 +89,6 @@
             <h1>RGB-Resto</h1>
         </div>
         <div class="input-container">
-            
-
             <asp:Label ID="Label1" runat="server" Text="Usuario" CssClass="input-label"></asp:Label>
             <asp:TextBox ID="TxtUsuario" runat="server" type="text"></asp:TextBox>
         </div>
@@ -90,14 +101,12 @@
         <h2><asp:Literal runat="server" ID="ltNotify1" /></h2>
 
         <div>
-            <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" CssClass="styled-button" OnClick="btnIngresar_Click" />
+            <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" CssClass="styled-button" OnClick="btnIngresar_Click" OnClientClick="return TriggerButtonClick(event, '<%= btnIngresar.ClientID %>');" />
         </div>
         <br />
         <div>
-        <asp:Label ID="LblError" runat="server" Text=" " CssClass="error-label"></asp:Label>
+            <asp:Label ID="LblError" runat="server" Text=" " CssClass="error-label"></asp:Label>
         </div>
-
-            
     </form>
 </body>
 </html>

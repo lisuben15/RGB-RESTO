@@ -26,8 +26,8 @@ namespace RESTO
                     ddlOpciones.SelectedValue = menu.Categoria.IdCategoria.ToString();
                     txtRequiereStock.Text = menu.RequiereStock.ToString();
                     txtStock.Text = menu.Stock.ToString();
-
                 }
+
 
 
             }
@@ -42,9 +42,8 @@ namespace RESTO
             elementoMenu.Precio = decimal.Parse(txtPrecio.Text);
             elementoMenu.Categoria = new Categoria();
             elementoMenu.Categoria.IdCategoria = int.Parse(ddlOpciones.SelectedValue);
-            elementoMenu.RequiereStock = bool.Parse(txtRequiereStock.Text);
+            elementoMenu.RequiereStock = (txtRequiereStock.Text == "1");
             elementoMenu.Stock = int.Parse(txtStock.Text);
-            servicioMenu.AgregarElementoMenu(elementoMenu);
 
             if (Request.QueryString["id"] == null)
             {

@@ -8,17 +8,17 @@
 
         .form-group label {
             display: inline-block;
-            width: 100px; /* Ancho fijo para todas las etiquetas */
+            width: 100px; 
             text-align: right;
             margin-bottom: 5px;
         }
 
         .form-group input,
         .form-group select {
-            width: 20%; /* Ajusta el valor según tus necesidades (ahora es la mitad) */
+            width: 20%; 
             box-sizing: border-box;
-            margin-bottom: 10px; /* Añadido para separar verticalmente los elementos */
-            padding: 5px; /* Ajusta el valor según tus necesidades */
+            margin-bottom: 10px; 
+            padding: 5px; 
         }
 
         .submit-btn {
@@ -61,6 +61,6 @@
     </div>
 
     <div class="submit-btn">
-        <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="styled-button" OnClick="btnAgregar_Click" />
+        <asp:Button ID="btnAgregar" runat="server" Text="Guardar" CssClass="styled-button" OnClick="btnAgregar_Click" />
     </div>
 </asp:Content>
