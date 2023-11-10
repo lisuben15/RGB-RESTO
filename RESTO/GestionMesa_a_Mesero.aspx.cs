@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Manager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,31 @@ namespace RESTO
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+           
+
+            if (!IsPostBack)
+            {
+                ServicioUsuario servicioUsuario = new ServicioUsuario();
+                dgvMeseros.DataSource = servicioUsuario.ObtenerUsuariosPorPerfil(2);
+                dgvMeseros.DataBind();
+
+               
+            }
+        }
+
+        protected void dgvMeseros_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ServicioMesa servicioMesa = new ServicioMesa();
+            int IdUsuarioMesero = int.Parse(dgvMeseros.SelectedDataKey.Value.ToString());
+
+            if (Request.QueryString["NumeroMesa"] != null)
+            {
+                int numeroMesa = int.Parse(Request.QueryString["NumeroMesa"].ToString());
+
+                servicioMesa.AsignarMesa(IdUsuarioMesero, numeroMesa);
+            }
+
+            Response.Redirect("GestionMesa.aspx");
 
         }
     }

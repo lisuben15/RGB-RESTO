@@ -203,5 +203,50 @@ namespace Manager
             return valorPerfil;
         }
 
+
+        public List<Usuario> ObtenerUsuariosPorPerfil(int IdPerfil)
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_ObtenerUsuariosPorPerfil");
+                datos.setearParametros("IdPerfil", IdPerfil);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+
+                    Usuario aux = new Usuario();
+                    aux.IdUsuario = (int)datos.Lector["IdUsuario"];                // Mapear
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Dni = (string)datos.Lector["Dni"];
+                    aux.Contrasenia = (string)datos.Lector["Contrasenia"];
+                    aux.FechaCreacion = (DateTime)datos.Lector["FechaCreacion"];
+
+                    aux.Perfil = new Perfil();
+                    aux.Perfil.IdPerfil = (int)datos.Lector["IdPerfil"];
+                    aux.Perfil.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
+
     }
+
 }
