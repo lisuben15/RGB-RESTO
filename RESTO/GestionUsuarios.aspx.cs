@@ -74,9 +74,15 @@ namespace RESTO
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            string IdUsuario = Session["IdUsuario"].ToString();
-            Response.Redirect("AgregarUsuario.aspx?id=" + IdUsuario);
-
+            if ((Session["IdUsuario"] == null))
+            {
+                Response.Write("<script>alert('No se selecciono usuario para modificar.')</script>");
+            }
+            else
+            {
+                string IdUsuario = Session["IdUsuario"].ToString();
+                Response.Redirect("AgregarUsuario.aspx?id=" + IdUsuario);
+            }
         }
     }
 }

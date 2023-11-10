@@ -17,7 +17,7 @@
             <asp:BoundField HeaderText="Dni" DataField="Dni"/>
             <asp:BoundField HeaderText="Fecha de creacion" DataField="FechaCreacion"/>
             <asp:BoundField HeaderText="Descripcion" DataField="Perfil.Descripcion"/>
-            <asp:commandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion"/>
+            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion"/>
         </columns>
 
     </asp:GridView>
