@@ -19,6 +19,7 @@ namespace Manager
                 datos.setearParametros("@Nombre", usuario.Nombre);
                 datos.setearParametros("@Apellido",usuario.Apellido);
                 datos.setearParametros("@Dni",usuario.Dni);
+                datos.setearParametros("@Contrasenia",usuario.Dni);
                 datos.setearParametros("@IdPerfil",usuario.Perfil.IdPerfil);   
                 datos.ejecutarAccion();
 

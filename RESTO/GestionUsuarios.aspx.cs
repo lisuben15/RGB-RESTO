@@ -46,24 +46,29 @@ namespace RESTO
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            try
+            if ((Session["IdUsuario"] == null))
             {
-                ServicioUsuario servicioUsuario = new ServicioUsuario();
-
-                int IdUsuario = int.Parse(Session["IdUsuario"].ToString());
-                servicioUsuario.EliminarUsuario(IdUsuario);
-
+                Response.Write("<script>alert('No se selecciono usuario para eliminar.')</script>");
             }
-            catch (Exception ex)
+            else
             {
+                try
+                {
+                    ServicioUsuario servicioUsuario = new ServicioUsuario();
 
-                throw ex;
+                    int IdUsuario = int.Parse(Session["IdUsuario"].ToString());
+                    servicioUsuario.EliminarUsuario(IdUsuario);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 
         protected void dgvUsuario_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+                            
             Session["IdUsuario"] = dgvUsuario.SelectedDataKey.Value.ToString();
         }
 
