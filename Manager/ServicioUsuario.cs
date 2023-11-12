@@ -159,6 +159,26 @@ namespace Manager
                 datos.cerrarConexion();
             }
         }
+        public void ModificarContrasenia(int Id, string contrasenia)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_ModificarContrasenia");
+                datos.setearParametros("@IdUsuario",Id);
+                datos.setearParametros("@Contrasenia",contrasenia);          
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public int Loguear(string dni, string contrasenia)
         {
             AccesoDatos datos = new AccesoDatos();

@@ -48,6 +48,12 @@ namespace RESTO
             if (Request.QueryString["id"] == null)
             {
                 servicioUsuario.AgregarUsuario(usuario);
+                if (txtContrasenia.Text.Length > 0)
+                {
+                    usuario.Contrasenia = lblContrasenia.Text;
+                    servicioUsuario.ModificarUsuario(usuario);
+                }
+
             }
             else
             {

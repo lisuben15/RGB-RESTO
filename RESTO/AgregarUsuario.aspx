@@ -52,11 +52,20 @@
         </asp:DropDownList>
     </div>
 
-    
+   
+    <div class="form-group">
+        <asp:Label ID="lblContrasenia" runat="server" Text=" Clave :  "></asp:Label>
+         <asp:TextBox ID="txtContrasenia" runat="server" ></asp:TextBox>
+    </div> 
+     
+    <div class="form-group">
+    <asp:Label runat="server" ForeColor="White" Text="Si no se modifica,"></asp:Label>
+        <asp:Label runat="server"  ForeColor="White" Text="la contrasenia por"></asp:Label>
+        <asp:Label runat="server"  ForeColor="White" Text="defecto es el DNI"></asp:Label>
+    </div> 
 
     <asp:Button ID="btnGuardar" runat="server" Text="Guardar"  CssClass="styled-button" OnClick="btnGuardar_Click"/>
-
-    
+ 
    
 
 

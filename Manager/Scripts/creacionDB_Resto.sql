@@ -129,14 +129,29 @@ create procedure sp_AgregarUsuario
 )
 as 
 BEGIN 
-  if not exists(select 1 from Usuarios where Dni like @Dni )
+  if not exists(select 1 from Usuarios where Dni like @Dni)
   begin 
  
     insert into Usuarios (Nombre,Apellido,Dni,Contrasenia,FechaCreacion,IdPerfil) 
     values
-     (@Nombre,@Apellido,@Dni,@dni,GETDATE(),@IdPerfil)
+     (@Nombre,@Apellido,@Dni,@Dni,GETDATE(),@IdPerfil)
   end
 end
+
+go
+
+CREATE procedure sp_ModificarContrasenia
+(
+  @IdUsuario int,
+  @Contrasenia varchar (150)
+)
+as
+BEGIN
+  update Usuarios
+   set  Contrasenia = @Contrasenia
+         
+  where IdUsuario = @IdUsuario
+END
 
 go
 
