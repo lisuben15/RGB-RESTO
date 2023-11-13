@@ -64,6 +64,7 @@ namespace RESTO
 
                     int IdMenu = int.Parse(Session["IdMenu"].ToString());
                     servicioMenu.EliminarElementoMenu(IdMenu);
+                    Response.Redirect("Gestion_Menu.aspx");
                 }
                 catch (Exception ex)
                 {
