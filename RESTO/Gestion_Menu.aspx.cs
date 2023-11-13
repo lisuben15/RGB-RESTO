@@ -75,6 +75,12 @@ namespace RESTO
         protected void dgvMenu_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session["IdMenu"] = dgvMenu.SelectedDataKey.Value.ToString();
+            dgvMenu.SelectedRowStyle.BorderColor = System.Drawing.Color.Red;
+            if (dgvMenu.SelectedRow.RowIndex!=0) {
+                dgvMenu.Rows[dgvMenu.SelectedRow.RowIndex - 1].BorderColor = System.Drawing.Color.Red;
+            }
+            dgvMenu.SelectedRowStyle.ForeColor=System.Drawing.Color.Red;
+
         }
 
         protected void ddlCategorias_SelectedIndexChanged(object sender, EventArgs e)
