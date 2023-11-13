@@ -54,13 +54,9 @@ namespace RESTO
             else
             {
                 usuario.IdUsuario = int.Parse(Request.QueryString["id"]);
-                usuario.Contrasenia = txtContrasenia.Text;
-
+             
                 servicioUsuario.ModificarUsuario(usuario);
-                if (txtContrasenia.Text != null)
-                {
-                    servicioUsuario.ModificarContrasenia(usuario.IdUsuario, usuario.Contrasenia);
-                }
+                
             }
             
             Response.Redirect("GestionUsuarios.aspx"); // sacar esto luego 
