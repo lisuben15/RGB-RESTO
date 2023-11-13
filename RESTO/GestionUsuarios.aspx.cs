@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Manager;
 using Dominio;
+using System.Drawing;
+
 namespace RESTO
 {
     public partial class Gestion_Usuarios : System.Web.UI.Page
@@ -58,6 +60,7 @@ namespace RESTO
 
                     int IdUsuario = int.Parse(Session["IdUsuario"].ToString());
                     servicioUsuario.EliminarUsuario(IdUsuario);
+                    Response.Redirect("GestionUsuarios.aspx");
                 }
                 catch (Exception ex)
                 {
@@ -70,6 +73,11 @@ namespace RESTO
         {
                             
             Session["IdUsuario"] = dgvUsuario.SelectedDataKey.Value.ToString();
+            dgvUsuario.SelectedRowStyle.BorderColor = Color.Red;
+            if (dgvUsuario.SelectedRow.RowIndex!=0) {
+                dgvUsuario.Rows[dgvUsuario.SelectedRow.RowIndex - 1].BorderColor = Color.Red;
+            }
+            dgvUsuario.SelectedRowStyle.ForeColor= Color.Red;
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)

@@ -48,7 +48,7 @@
         }
 
         .table {
-            margin: 0 auto;
+            margin: auto;
         }
     </style>
 </asp:Content>
