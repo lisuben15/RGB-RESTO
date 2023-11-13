@@ -44,21 +44,23 @@ namespace RESTO
             usuario.Dni = txtDni.Text;
             usuario.Perfil = new Perfil();
             usuario.Perfil.IdPerfil = int.Parse(ddlOpciones.SelectedValue);
+            
 
             if (Request.QueryString["id"] == null)
             {
-                servicioUsuario.AgregarUsuario(usuario);
-                if (txtContrasenia.Text != null)
-                {
-                    usuario.Contrasenia = txtContrasenia.Text;
-                    servicioUsuario.ModificarContrasenia(servicioUsuario.ObtenerIdUsuario(usuario.Dni), txtContrasenia.Text);
-                }
+                servicioUsuario.AgregarUsuario(usuario);             
 
             }
             else
             {
                 usuario.IdUsuario = int.Parse(Request.QueryString["id"]);
+                usuario.Contrasenia = txtContrasenia.Text;
+
                 servicioUsuario.ModificarUsuario(usuario);
+                if (txtContrasenia.Text != null)
+                {
+                    servicioUsuario.ModificarContrasenia(usuario.IdUsuario, usuario.Contrasenia);
+                }
             }
             
             Response.Redirect("GestionUsuarios.aspx"); // sacar esto luego 

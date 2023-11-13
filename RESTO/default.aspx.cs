@@ -19,12 +19,15 @@ namespace RESTO
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            Manager.ServicioUsuario usuario = new Manager.ServicioUsuario();
-            int perfil = usuario.Loguear(TxtUsuario.Text,TxtPassword.Text);
-            if(perfil!=0){
-                Session.Add("usuario", usuario);
-                Session.Add("perfil", perfil);
-                switch(perfil) 
+            Manager.ServicioUsuario servicioUsuario = new Manager.ServicioUsuario();
+            Usuario usuario = servicioUsuario.Loguear(TxtUsuario.Text,TxtPassword.Text);
+
+            if(usuario != null){
+
+                Session.Add("DNI", usuario.Dni);
+                Session.Add("IdUsuario", usuario.IdUsuario);
+
+                switch(usuario.Perfil.IdPerfil) 
                 {
                     case 1:
                         Response.Redirect("PaginaGerente.aspx");

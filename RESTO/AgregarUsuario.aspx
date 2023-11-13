@@ -27,7 +27,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1> Agregar usuario </h1>
+    <h1> Empleados </h1>
 
     <div class="form-group">
         <asp:Label ID="lblNombre" runat="server" Text="Nombre: "></asp:Label>

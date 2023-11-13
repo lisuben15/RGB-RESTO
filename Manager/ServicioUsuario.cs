@@ -146,7 +146,7 @@ namespace Manager
                 datos.setearParametros("@Nombre",usuario.Nombre);
                 datos.setearParametros("@Apellido",usuario.Apellido);
                 datos.setearParametros("@Dni",usuario.Dni);                        
-                datos.setearParametros("@IdPerfil",usuario.Perfil.IdPerfil);          
+                datos.setearParametros("@IdPerfil",usuario.Perfil.IdPerfil);               
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -179,31 +179,34 @@ namespace Manager
                 datos.cerrarConexion();
             }
         }
-        public int Loguear(string dni, string contrasenia)
+        public Usuario Loguear(string dni, string contrasenia)
         {
             AccesoDatos datos = new AccesoDatos();
-            int login = 0;
+           
             try
             {
                 datos.setearConsulta("SELECT * FROM Usuarios WHERE Dni=@Dni AND Contrasenia=@Contrasenia");
                 datos.setearParametros("@Dni",dni);
                 datos.setearParametros("@Contrasenia",contrasenia);
                 datos.ejecutarLectura();
-                if (datos.Lector.Read())
+                while (datos.Lector.Read())
                 {
-                    if ((string)datos.Lector["Dni"] == dni)
-                    {
-                        if ((string)datos.Lector["Contrasenia"] == contrasenia)
-                        {
-                            login = (int)datos.Lector["IdPerfil"];
-                        }
-                    }
+                    Usuario aux = new Usuario();
+                    aux.IdUsuario = (int)datos.Lector["IdUsuario"];                // Mapear
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Dni = (string)datos.Lector["Dni"];
+                    aux.Contrasenia = (string)datos.Lector["Contrasenia"];
+                    aux.FechaCreacion = (DateTime)datos.Lector["FechaCreacion"];
+
+                    aux.Perfil = new Perfil();
+                    aux.Perfil.IdPerfil = (int)datos.Lector["IdPerfil"];
+
+                    return aux;
                 }
-                else
-                {
-                    return login;
-                }
-                return login;
+
+                return null;
+                
             }
             catch (Exception ex)
             {
