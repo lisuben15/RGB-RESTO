@@ -215,6 +215,35 @@ namespace Manager
             }
         }
 
+        public int ObtenerIdUsuario(string dni)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int id= 0;
+            try
+            {
+                datos.setearConsulta("SELECT * FROM Usuarios WHERE Dni=@Dni");
+                datos.setearParametros("@Dni",dni);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    id=(int)datos.Lector["IdUsuario"];
+                }
+                else
+                {
+                    return id;
+                }
+                return id;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
          public int ObtenerTipoDeUsuario(string Dni, string Contrasenia)
         {
