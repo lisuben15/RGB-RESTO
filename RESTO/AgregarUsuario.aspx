@@ -47,8 +47,6 @@
     <div class="form-group">
         <asp:Label ID="lblOpciones" runat="server" Text="** Rol**:"></asp:Label>
         <asp:DropDownList ID="ddlOpciones" runat="server">
-            <asp:ListItem Text="Gerente" Value="1" />
-            <asp:ListItem Text="Mesero" Value="2" />
         </asp:DropDownList>
     </div>
 

@@ -96,6 +96,37 @@ namespace Manager
             }
         }
 
+        public List<Perfil> ListarPerfiles()
+        {
+            List<Perfil> lista = new List<Perfil>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_ListarPerfiles");
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+
+                    Perfil aux = new Perfil();
+                    aux.IdPerfil = (int)datos.Lector["IdPerfil"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public List<Usuario> ListarUsuarios()
         {
             List<Usuario> lista = new List<Usuario>();

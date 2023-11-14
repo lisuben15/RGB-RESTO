@@ -1,6 +1,7 @@
 ﻿using Manager;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -28,6 +29,11 @@ namespace RESTO
         {
             ServicioMesa servicioMesa = new ServicioMesa();
             int IdUsuarioMesero = int.Parse(dgvMeseros.SelectedDataKey.Value.ToString());
+           if (dgvMeseros.SelectedRow.RowIndex!=0) {
+                dgvMeseros.Rows[dgvMeseros.SelectedRow.RowIndex - 1].BorderColor = Color.Red;
+            }
+            dgvMeseros.SelectedRowStyle.ForeColor= Color.Red;
+ 
 
             if (Request.QueryString["NumeroMesa"] != null)
             {

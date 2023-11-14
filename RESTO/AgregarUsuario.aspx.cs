@@ -20,17 +20,29 @@ namespace RESTO
                     ServicioUsuario servicioUsuario = new ServicioUsuario();
                     int idUsuario = int.Parse(Request.QueryString["id"]);
                     Usuario usuario = servicioUsuario.ObtenerUsuarioPorId(idUsuario);
+                    ServicioPerfil servicioPerfil = new ServicioPerfil ();
 
                     txtNombre.Text = usuario.Nombre;
                     txtApellido.Text = usuario.Apellido;
                     txtDni.Text = usuario.Dni;
+                    ddlOpciones.DataSource = servicioPerfil.ListarPerfiles();
+                    ddlOpciones.DataTextField = "Descripcion";
+                    ddlOpciones.DataValueField = "IdPerfil";
+                    ddlOpciones.DataBind();
                     ddlOpciones.SelectedValue = usuario.Perfil.IdPerfil.ToString();
+                }
+                else
+                {
+                    ServicioPerfil servicioPerfil = new ServicioPerfil ();
 
+                    ddlOpciones.DataSource = servicioPerfil.ListarPerfiles();
+                    ddlOpciones.DataTextField = "Descripcion";
+                    ddlOpciones.DataValueField = "IdPerfil";
+                    ddlOpciones.DataBind();
+                    ddlOpciones.SelectedIndex = 0;
                 }
 
-
             }
-
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
