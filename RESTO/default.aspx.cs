@@ -26,6 +26,7 @@ namespace RESTO
 
                 Session.Add("DNI", usuario.Dni);
                 Session.Add("IdUsuario", usuario.IdUsuario);
+                Session.Add("IdPerfil", usuario.Perfil.IdPerfil);
 
                 switch(usuario.Perfil.IdPerfil) 
                 {

@@ -14,7 +14,7 @@ namespace RESTO
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!ValidarAccesoPagina(1))
+            if (!ValidarAccesoPagina(int.Parse(Session["IdPerfil"].ToString())))
             {
                 Server.Transfer("default.aspx");
             }
@@ -28,21 +28,15 @@ namespace RESTO
         }
         public bool ValidarAccesoPagina(int perfil)
         {
-            if ((Session["usuario"] == null) || (Session["perfil"] == null) || ((int)Session["perfil"] > perfil))
+
+            if (perfil == 1)
             {
-                if ((Session["perfil"] != null) && (Session["usuario"] != null))
-                {
-                    Response.Write("<script>alert('El usuario no posee el permiso suficiente para acceder a esta pagina.')</script>");
-                }
-                if (Session["usuario"] == null)
-                {
-                    Response.Write("<script>alert('Por favor, acceda con su usuario y contraseña.')</script>");
-                }
-                return false;
+                return true;
             }
             else
             {
-                return true;
+                Response.Write("<script>alert('El usuario no posee el permiso suficiente para acceder a esta pagina.')</script>");
+                return false;
             }
         }
 
