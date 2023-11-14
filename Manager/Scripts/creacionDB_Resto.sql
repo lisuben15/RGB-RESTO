@@ -1,4 +1,4 @@
-USE master
+use master
 GO
 
 CREATE DATABASE Resto
@@ -24,7 +24,7 @@ CREATE TABLE Menu(
 GO
 
 CREATE TABLE EstadoMesa(
-  IdMesa int primary key identity (1,1),
+  IdEstadoMesa int primary key identity (1,1),
   Descripcion varchar (100)
 )
 GO
@@ -48,10 +48,10 @@ CREATE TABLE Usuarios(
 GO
 
 CREATE TABLE Mesas (
-  Idmesa int primary key identity(1,1),
-  IdEstado int not null FOREIGN key references EstadoMesa (IdMesa),
-  FechaReserva datetime, 
-  IdUsuario int FOREIGN key REFERENCES Usuarios (IdUsuario)
+  IdMesa int primary key identity(1,1),
+  IdEstado int not null FOREIGN key references EstadoMesa (IdEstadoMesa),
+  FechaReserva datetime null, 
+  IdUsuario int null FOREIGN key REFERENCES Usuarios (IdUsuario)
 
 )
 GO
@@ -129,7 +129,7 @@ create procedure sp_AgregarUsuario
 )
 as 
 BEGIN 
-  if not exists(select 1 from Usuarios where Dni like @Dni)
+  if not exists(select 1 from Usuarios where Dni like @Dni )
   begin 
  
     insert into Usuarios (Nombre,Apellido,Dni,Contrasenia,FechaCreacion,IdPerfil) 
@@ -137,21 +137,6 @@ BEGIN
      (@Nombre,@Apellido,@Dni,@Dni,GETDATE(),@IdPerfil)
   end
 end
-
-go
-
-CREATE procedure sp_ModificarContrasenia
-(
-  @IdUsuario int,
-  @Contrasenia varchar (150)
-)
-as
-BEGIN
-  update Usuarios
-   set  Contrasenia = @Contrasenia
-         
-  where IdUsuario = @IdUsuario
-END
 
 go
 
@@ -206,6 +191,21 @@ BEGIN
 END
 
 GO
+
+CREATE procedure sp_ModificarContrasenia
+(
+  @IdUsuario int,
+  @Contrasenia varchar (150)
+)
+as
+BEGIN
+  update Usuarios
+   set  Contrasenia = @Contrasenia
+         
+  where IdUsuario = @IdUsuario
+END
+
+go
 
 create procedure sp_ObtenerUsuarioPorId(
   @Id INT
@@ -348,6 +348,99 @@ BEGIN
                   IdCategoria = @IdCategoria,
                   RequiereStock = @RequiereStock
    where IdMenu = @IdMenu
+END
+
+GO
+
+
+CREATE PROCEDURE sp_CrearMesa
+AS
+BEGIN
+
+  DECLARE @idEstadoMesa INT
+
+  SELECT @idEstadoMesa = IdEstadoMesa 
+  FROM EstadoMesa
+  WHERE Descripcion = 'Libre'
+
+  INSERT INTO Mesas
+  VALUES(@idEstadoMesa, NULL, NULL)
+
+END
+GO
+
+CREATE PROCEDURE sp_AsignarMesa
+(
+  @idUsuario INT,
+  @idMesa INT
+)
+AS
+BEGIN
+
+    UPDATE Mesas
+    SET IdUsuario = @idUsuario
+    WHERE Idmesa = @idMesa
+
+END
+
+
+GO
+
+
+CREATE PROCEDURE sp_CambiarEstado
+(
+  @IdMesa int,
+  @IdEstado int
+)
+AS
+BEGIN
+  UPDATE Mesas
+  SET IdEstado = @IdEstado WHERE IdMesa = @IdMesa
+END
+
+GO
+
+CREATE PROCEDURE sp_EliminarMesa
+(
+  @IdMesa int
+)
+AS
+BEGIN
+    DELETE from Mesas where IdMesa = @IdMesa
+END
+
+GO
+
+
+CREATE PROCEDURE sp_ListarMesas
+AS
+BEGIN
+
+  SELECT Idmesa, IdEstado, FechaReserva, IdUsuario, Descripcion FROM Mesas m 
+  inner join EstadoMesa em on m.IdEstado = em.IdEstadoMesa
+
+
+END
+
+GO
+
+CREATE PROCEDURE sp_ObtenerUsuariosPorPerfil(
+  @IdPerfil int
+)
+AS
+BEGIN
+  SELECT IdUsuario, Nombre, Apellido,Dni, Contrasenia, FechaCreacion,u.IdPerfil, Descripcion FROM Usuarios u
+  inner join Perfiles p on u.IdPerfil = P.IdPerfil
+  WHERE u.IdPerfil = @IdPerfil 
+END
+
+GO
+
+CREATE PROCEDURE sp_DesasignarMesas
+AS
+BEGIN
+  update Mesas 
+  set IdUsuario = null
 END
 
 GO

@@ -28,10 +28,18 @@ namespace RESTO
 
                 ddlCategorias.SelectedIndex = 0;
 
-                int idCategoriaSeleccionado = Convert.ToInt32(ddlCategorias.SelectedItem.Value);
+                try
+                {
+                    int idCategoriaSeleccionado = Convert.ToInt32(ddlCategorias.SelectedItem.Value);
+                    dgvMenu.DataSource = servicioMenu.ListarElementoMenu(idCategoriaSeleccionado);
+                    dgvMenu.DataBind();
+                }
+                catch (Exception)
+                {
+                    Response.Write("<script>alert('No se seleccionó Menú para eliminar.')</script>");
+                }
 
-                dgvMenu.DataSource = servicioMenu.ListarElementoMenu(idCategoriaSeleccionado);
-                dgvMenu.DataBind();
+                
             }
         }
 
