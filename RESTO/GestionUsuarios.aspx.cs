@@ -30,13 +30,15 @@ namespace RESTO
         {
             if ((Session["usuario"] == null) || (Session["perfil"] == null) || ((int)Session["perfil"] > perfil))
             {
-                if ((Session["perfil"] != null) && (Session["usuario"] != null))
-                {
-                    Response.Write("<script>alert('El usuario no posee el permiso suficiente para acceder a esta pagina.')</script>");
-                }
                 if (Session["usuario"] == null)
                 {
                     Response.Write("<script>alert('Por favor, acceda con su usuario y contraseña.')</script>");
+                    return false;
+                }
+                if (((int)Session["perfil"] > perfil) && (Session["usuario"] != null))
+                {
+                    Response.Write("<script>alert('El usuario no posee el permiso suficiente para acceder a esta pagina.')</script>");
+                    return false;
                 }
                 return false;
             }

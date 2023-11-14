@@ -24,13 +24,18 @@ namespace RESTO
 
         protected void btnAsignarMesa_Click(object sender, EventArgs e)
         {
-
-            Response.Redirect("GestionMesa_a_Mesero.aspx?NumeroMesa=" + Session["NumeroMesa"].ToString());
+            if (Session["NumeroMesa"] == null) {
+                Response.Write("<script>alert('No se selecciono mesa.')</script>");
+            }
+            else
+            {
+                Response.Redirect("GestionMesa_a_Mesero.aspx?NumeroMesa=" + Session["NumeroMesa"].ToString());
+            }
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-
+           
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
