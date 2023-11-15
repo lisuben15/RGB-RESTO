@@ -13,11 +13,19 @@ namespace RESTO
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            ServicioCategoria servicioCategoria = new ServicioCategoria();
+            ServicioMenu servicioMenu = new ServicioMenu();
+
             if (!IsPostBack)
             {
+                ddlOpciones.DataSource = servicioCategoria.ListarCategoria();
+                ddlOpciones.DataTextField = "Descripcion";
+                ddlOpciones.DataValueField = "IdCategoria";
+                ddlOpciones.DataBind();
+                ddlOpciones.SelectedIndex = 0;
+
                 if (Request.QueryString["id"] != null)
                 {
-                    ServicioMenu servicioMenu = new ServicioMenu();
                     int idMenu = int.Parse(Request.QueryString["id"]);
                     ElementoMenu menu = servicioMenu.ObtenerElementoMenuPorId(idMenu);
 
@@ -27,9 +35,6 @@ namespace RESTO
                     txtRequiereStock.Text = menu.RequiereStock.ToString();
                     txtStock.Text = menu.Stock.ToString();
                 }
-
-
-
             }
         }
 

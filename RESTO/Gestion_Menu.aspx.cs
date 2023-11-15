@@ -18,8 +18,6 @@ namespace RESTO
         {
             if (!IsPostBack)
             {
-
-
                 ddlCategorias.DataSource = servicioCategoria.ListarCategoria();
 
                 ddlCategorias.DataTextField = "Descripcion";
@@ -94,11 +92,10 @@ namespace RESTO
 
         protected void ddlCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int idCategoria = Convert.ToInt32(ddlCategorias.SelectedItem.Value);
-            dgvMenu.DataSource = servicioMenu.ListarElementoMenu(idCategoria);
-            ddlCategorias.DataTextField = "Descripcion";
-            ddlCategorias.DataValueField = "IdCategoria";
-            ddlCategorias.DataBind();
+           int idCategoriaSeleccionado = Convert.ToInt32(ddlCategorias.SelectedItem.Value);
+           dgvMenu.DataSource = servicioMenu.ListarElementoMenu(idCategoriaSeleccionado);
+           dgvMenu.DataBind();
+ 
         }
     }
 }
