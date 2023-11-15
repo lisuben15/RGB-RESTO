@@ -15,30 +15,12 @@ namespace RESTO
     {
 
         /// <summary>
-        /// Control LblMesaAsignada.
+        /// Control Repetidor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblMesaAsignada;
-
-        /// <summary>
-        /// Control TxtNumeroMesa.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtNumeroMesa;
-
-        /// <summary>
-        /// Control BtnTomarPedido.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnTomarPedido;
+        protected global::System.Web.UI.WebControls.Repeater Repetidor;
     }
 }

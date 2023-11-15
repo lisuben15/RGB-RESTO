@@ -8,7 +8,7 @@
      <div style="display: flex; align-items: flex-start; flex-direction: column">
      <div style="margin-right: 20px; display: flex;">
          <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" CssClass="boton-moderno" />
-         <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" CssClass="boton-moderno" />
+        <%-- <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" CssClass="boton-moderno" />--%>
          <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" CssClass="boton-moderno" />
          <asp:Button ID="btnAsignarMesa" runat="server" Text="Asignar Mesa" OnClick="btnAsignarMesa_Click" CssClass="boton-moderno"/>
          <asp:Button ID="btnDesasignarMesas" runat="server" Text="Desasignar Mesas" OnClick="btnDesasignarMesas_Click" CssClass="boton-moderno"/>

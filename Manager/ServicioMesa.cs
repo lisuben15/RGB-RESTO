@@ -9,26 +9,46 @@ namespace Manager
 {
     public class ServicioMesa
     {
-        public void AgregarMesa(Mesa mesa)
+        public void AgregarMesa()
         {
-            //AccesoDatos datos = new AccesoDatos();
+            AccesoDatos datos = new AccesoDatos();
 
-            //try
-            //{
-            //    datos.setearProcedimiento("sp_AgregarMesa");
-            //    datos.setearParametros("@Descripcion",mesa.);
-            //    datos.ejecutarAccion();
+            try
+            {
+                datos.setearProcedimiento("sp_CrearMesa");              
+                datos.ejecutarAccion();
 
-            //}
-            //catch (Exception ex)
-            //{
+            }
+            catch (Exception ex)
+            {
 
-            //    throw ex;
-            //}
-            //finally
-            //{
-            //    datos.cerrarConexion();
-            //}
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+        public void EliminarMesa(int IdMesa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("sp_EliminarMesa");
+                datos.setearParametros("@IdMesa", IdMesa);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
         }
 
@@ -66,6 +86,45 @@ namespace Manager
             }
 
         }
+
+
+        public List<Mesa> ListarMesasPorMesero(int IdUsuario)
+        {
+            List<Mesa> lista = new List<Mesa>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("sp_ListarMesasPorMesero");
+                datos.setearParametros("@IdUsuario", IdUsuario);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Mesa mesa = new Mesa();
+                    mesa.NumeroMesa = (int)datos.Lector["Idmesa"];                // Mapear
+
+                    mesa.Estado = new EstadoMesa();
+
+                    mesa.Estado.idEstadoMesa = (int)datos.Lector["IdEstado"];
+                    mesa.Estado.Descripcion = (string)datos.Lector["Descripcion"];
+                    mesa.IdUsuario = datos.Lector["IdUsuario"] != DBNull.Value ? (int?)datos.Lector["IdUsuario"] : null;
+                    mesa.FechaReserva = datos.Lector["FechaReserva"] != DBNull.Value ? (DateTime?)datos.Lector["FechaReserva"] : null;
+
+                    lista.Add(mesa);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+
         public void AsignarMesa(int IdUsuario, int NumeroMesa)
         {
             AccesoDatos datos = new AccesoDatos();
