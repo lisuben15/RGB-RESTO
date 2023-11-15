@@ -11,34 +11,34 @@ namespace RESTO
 {
 
 
-    public partial class PaginaMesero
+    public partial class PedidoMesero
     {
 
         /// <summary>
-        /// Control LblMesaAsignada.
+        /// Control dgvMenuPedidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblMesaAsignada;
+        protected global::System.Web.UI.WebControls.GridView dgvMenuPedidos;
 
         /// <summary>
-        /// Control TxtNumeroMesa.
+        /// Control btnAgregar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtNumeroMesa;
+        protected global::System.Web.UI.WebControls.Button btnAgregar;
 
         /// <summary>
-        /// Control BtnTomarPedido.
+        /// Control btnCerrarPedido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnTomarPedido;
+        protected global::System.Web.UI.WebControls.Button btnCerrarPedido;
     }
 }

@@ -3,7 +3,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Pagina de Meseros</h1>
-
-    <p> CUANDO SE REGISTRE UN MESERO DEBE VENIR A ESTA PAGINA</p>
+    <br />
+    <asp:Label ID="LblMesaAsignada" runat="server" Text="Mesa asignada: "></asp:Label>
+    <asp:TextBox ID="TxtNumeroMesa" runat="server"></asp:TextBox>
+    <asp:Button ID="BtnTomarPedido" runat="server" Text="Tomar Pedido" OnClick="BtnTomarPedido_Click" />
 
 </asp:Content>
