@@ -45,10 +45,6 @@ namespace RESTO
         protected void dgvMenuPedidos_SelectedIndexChanged(object sender, EventArgs e)
         {
             IdMenuSeleccionado = int.Parse(dgvMenuPedidos.SelectedDataKey.Value.ToString());
-             dgvMenuPedidos.SelectedRowStyle.BorderColor = System.Drawing.Color.Red;
-            if (dgvMenuPedidos.SelectedRow.RowIndex!=0) {
-                dgvMenuPedidos.Rows[dgvMenuPedidos.SelectedRow.RowIndex - 1].BorderColor = System.Drawing.Color.Red;
-            }
             dgvMenuPedidos.SelectedRowStyle.ForeColor=System.Drawing.Color.Red;
         }
 
@@ -70,12 +66,13 @@ namespace RESTO
             {
                 int IdMenu = int.Parse(dgvMenuPedidos.SelectedDataKey.Value.ToString());
                 servicioPedido.AgregarAlPedido(IdPedido,IdMenu);
-                dgvPedido.DataBind();
             }
             else
             {
                 Response.Write("<script>alert('No hay un pedido abierto en esta mesa aun.')</script>");
             }
+            List<DetallePedido> listaDetallePedidos=servicioPedido.ListaDetallePedido(IdPedido);
+            dgvPedido.DataSource = listaDetallePedidos;
             dgvPedido.DataBind();
         }
 
