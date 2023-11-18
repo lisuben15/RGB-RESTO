@@ -1,6 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AgregarMenu.aspx.cs" Inherits="RESTO.AgregarMenu" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
+
+        .styled-button {
+                background-color: midnightblue;
+                color: white; 
+                padding: 10px 20px;
+                border: none; 
+                border-radius: 5px; 
+                cursor: pointer; 
+                font-size: 16px; 
+            }
+
+            .styled-button:hover {
+                background-color: #45a049;
+            }
+
+
         .form-group {
             text-align: center;
             margin-bottom: 10px;
@@ -29,7 +45,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
-         <h1> Pagina de agregado de menu</h1>
+         <h1> Agregado/Modificación del Menú</h1>
 
     <div class="form-group">
         <asp:Label ID="lblDescripcion" runat="server" Text="   Descripcion: "></asp:Label>

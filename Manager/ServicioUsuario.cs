@@ -328,7 +328,36 @@ namespace Manager
         }
 
 
+        public List<Usuario> ListarIdMeseros()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.setearProcedimiento("sp_ListarIdMeseros");
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+
+                    Usuario aux = new Usuario();
+                    aux.IdUsuario = (int)datos.Lector["IdUsuario"];                // Mapear
+                   
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
     }
 

@@ -185,5 +185,39 @@ namespace Manager
         }
 
 
+        public List<ElementoMenu> ListaReportePorMesero(int IdUsuario)
+        {
+            List<ElementoMenu> lista = new List<ElementoMenu>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_ObtenerDetallePedidoPorMesero");
+                datos.setearParametros("@IdUsuario", IdUsuario);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+
+                    ElementoMenu aux = new ElementoMenu();
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Precio = (decimal)datos.Lector["Precio"];
+                   
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
     }
 }

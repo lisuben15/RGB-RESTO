@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +20,8 @@ namespace Manager
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=Resto; integrated security=true");
-            //conexion = new SqlConnection("server=DESKTOP-2360JBV\\SQLEXPRESS1; database=Resto; integrated security=true");
+            //conexion = new SqlConnection("server=.\\SQLEXPRESS; database=Resto; integrated security=true");
+            conexion = new SqlConnection("server=DESKTOP-2360JBV\\SQLEXPRESS1; database=Resto; integrated security=true");
             //conexion = new SqlConnection("server=localhost; database=Resto; integrated security=false; user=sa; password=123456");
 
             comando = new SqlCommand();
