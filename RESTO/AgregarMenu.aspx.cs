@@ -32,7 +32,7 @@ namespace RESTO
                     txtDescripcion.Text = menu.Descripcion;
                     txtPrecio.Text = menu.Precio.ToString();
                     ddlOpciones.SelectedValue = menu.Categoria.IdCategoria.ToString();
-                    txtRequiereStock.Text = menu.RequiereStock.ToString();
+                    ddlRequiereStock.SelectedIndex = Convert.ToInt32(menu.RequiereStock);
                     txtStock.Text = menu.Stock.ToString();
                 }
             }
@@ -47,8 +47,15 @@ namespace RESTO
             elementoMenu.Precio = decimal.Parse(txtPrecio.Text);
             elementoMenu.Categoria = new Categoria();
             elementoMenu.Categoria.IdCategoria = int.Parse(ddlOpciones.SelectedValue);
-            elementoMenu.RequiereStock = (txtRequiereStock.Text == "1");
-            elementoMenu.Stock = int.Parse(txtStock.Text);
+            elementoMenu.RequiereStock = (bool.Parse(ddlRequiereStock.SelectedValue));
+            if (txtStock.Text.Length!=0)
+            {
+                elementoMenu.Stock = int.Parse(txtStock.Text);
+            }
+            else
+            {
+                elementoMenu.Stock = int.Parse("0");
+            }
 
             if (Request.QueryString["id"] == null)
             {
@@ -60,7 +67,7 @@ namespace RESTO
                 servicioMenu.ModificarElementoMenu(elementoMenu);
             }
 
-                Response.Redirect("Gestion_Menu.aspx"); // sacar esto luego 
+                Response.Redirect("Gestion_Menu.aspx"); 
  
         }
     }

@@ -43,16 +43,15 @@
 
     <div class="form-group">
         <asp:Label ID="lblOpciones" runat="server" Text="Tipo de Menú: "></asp:Label>
-        <asp:DropDownList ID="ddlOpciones" runat="server">   
-            <asp:ListItem Text="Comida" Value="1" />
-            <asp:ListItem Text="Bebida" Value="2" />
-            <asp:ListItem Text="Postre" Value="3" />
-        </asp:DropDownList>
+        <asp:DropDownList ID="ddlOpciones" runat="server" AutoPostBack="true"> </asp:DropDownList>
     </div>
 
     <div class="form-group">
-        <asp:Label ID="lblRequiereStock" runat="server" Text="Requiere Stock: "></asp:Label>
-        <asp:TextBox ID="txtRequiereStock" runat="server"></asp:TextBox>
+        <asp:Label ID="lblRequiereStock" runat="server" Text="Requiere Stock: " ></asp:Label>
+        <asp:DropDownList ID="ddlRequiereStock" runat="server">   
+            <asp:ListItem Text="No" Value="FALSE" />
+            <asp:ListItem Text="Si" Value="TRUE" />
+        </asp:DropDownList>
     </div>
 
     <div class="form-group">
