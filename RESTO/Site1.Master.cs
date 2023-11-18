@@ -11,7 +11,7 @@ namespace RESTO
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            NombreApellidoUser.Text = "Usuario: " + Session["Nombre"].ToString();
         }
 
     }
