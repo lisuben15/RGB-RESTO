@@ -44,6 +44,7 @@
     <Compile Include="Categoria.cs" />
     <Compile Include="DetallePedido.cs" />
     <Compile Include="ElementoMenu.cs" />
+    <Compile Include="EnumEstadosMesa.cs" />
     <Compile Include="EstadoMesa.cs" />
     <Compile Include="Mesa.cs" />
     <Compile Include="Pedido.cs" />

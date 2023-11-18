@@ -26,7 +26,8 @@ namespace RESTO
 
         protected void btnMesa_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PedidoMesero.aspx");
+            string NumeroMesa = ((Button)sender).CommandArgument;
+            Response.Redirect("PedidoMesero.aspx?NumeroMesa=" + NumeroMesa);
         }
     }
 }

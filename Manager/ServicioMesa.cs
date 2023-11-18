@@ -174,5 +174,71 @@ namespace Manager
         }
 
 
+        public Mesa ObtenerMesaPorId(int NumeroMesa)
+        {
+            
+            AccesoDatos datos = new AccesoDatos();
+            Mesa mesa = new Mesa();
+            try
+            {
+                datos.setearProcedimiento("sp_ObtenerMesaPorId");
+                datos.setearParametros("@NumeroMesa", NumeroMesa);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+
+                   
+                    mesa.NumeroMesa = (int)datos.Lector["Idmesa"];                // Mapear
+
+                    mesa.Estado = new EstadoMesa();
+
+                    mesa.Estado.idEstadoMesa = (int)datos.Lector["IdEstado"];
+                    mesa.Estado.Descripcion = (string)datos.Lector["Descripcion"];
+                    mesa.IdUsuario = datos.Lector["IdUsuario"] != DBNull.Value ? (int?)datos.Lector["IdUsuario"] : null;
+                    mesa.FechaReserva = datos.Lector["FechaReserva"] != DBNull.Value ? (DateTime?)datos.Lector["FechaReserva"] : null;
+
+
+                }
+                    return mesa;
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+        public void CambiarEstado(int IdMesa, int IdEstado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_CambiarEstado");
+
+                datos.setearParametros("@IdMesa", IdMesa);
+                datos.setearParametros("@IdEstado", IdEstado);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+
     }
 }

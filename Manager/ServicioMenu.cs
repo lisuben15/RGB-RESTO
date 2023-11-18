@@ -96,6 +96,44 @@ namespace Manager
             }
         }
 
+        public List<ElementoMenu> ListarElementoMenuCompleto()
+        {
+            List<ElementoMenu> lista = new List<ElementoMenu>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_ListarElementoMenuCompleto");         
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+
+                    ElementoMenu aux = new ElementoMenu();
+                    aux.IdMenu = (int)datos.Lector["IdMenu"];                // Mapear
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Precio = (decimal)datos.Lector["Precio"];
+                    aux.Categoria = new Categoria();
+                    aux.Categoria.IdCategoria = (int)datos.Lector["IdCategoria"];
+                    aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+                    aux.RequiereStock = (bool)datos.Lector["RequiereStock"];
+                    aux.Stock = (int)datos.Lector["Stock"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
         public void ModificarElementoMenu(ElementoMenu menuItem)
         {
             AccesoDatos datos = new AccesoDatos();

@@ -10,7 +10,8 @@ namespace Dominio
     {
         public int IdDetallePedido { get; set; }
         public int IdPedido { get; set; }
-        public int IdMenu { get; set; }
+        public ElementoMenu Menu { get; set; }
+        
 
     }
 }
