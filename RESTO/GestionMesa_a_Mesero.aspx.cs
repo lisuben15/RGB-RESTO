@@ -20,8 +20,6 @@ namespace RESTO
                 ServicioUsuario servicioUsuario = new ServicioUsuario();
                 dgvMeseros.DataSource = servicioUsuario.ObtenerUsuariosPorPerfil(2);
                 dgvMeseros.DataBind();
-
-               
             }
         }
 

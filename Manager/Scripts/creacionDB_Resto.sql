@@ -1,4 +1,4 @@
-use master
+USE master
 GO
 
 CREATE DATABASE Resto
@@ -192,6 +192,19 @@ END
 
 GO
 
+create procedure sp_ObtenerUsuarioPorId(
+  @Id INT
+)
+AS
+BEGIN
+  SELECT * FROM Usuarios u
+  INNER JOIN Perfiles p on p.IdPerfil = u.IdPerfil
+  WHERE IdUsuario = @Id
+END
+
+GO
+
+
 CREATE procedure sp_ModificarContrasenia
 (
   @IdUsuario int,
@@ -205,19 +218,9 @@ BEGIN
   where IdUsuario = @IdUsuario
 END
 
-go
-
-create procedure sp_ObtenerUsuarioPorId(
-  @Id INT
-)
-AS
-BEGIN
-  SELECT * FROM Usuarios u
-  INNER JOIN Perfiles p on p.IdPerfil = u.IdPerfil
-  WHERE IdUsuario = @Id
-END
-
 GO
+
+
 create procedure sp_AgregarCategoria
 (
   @Descripcion varchar (100)
@@ -328,9 +331,17 @@ BEGIN
   select * from Menu where IdCategoria = @IdCategoria
 END
  
-
  GO
 
+create procedure sp_ListarElementoMenuCompleto
+AS
+BEGIN
+  select IdMenu, m.Descripcion, Precio, m.IdCategoria, c.Descripcion as Categoria , RequiereStock, Stock from Menu m 
+  inner join Categorias c on m.IdCategoria = c.IdCategoria  
+   order by m.IdCategoria asc
+END
+
+GO
 
 create procedure sp_ModificarElementoMenu
 (
@@ -353,6 +364,7 @@ END
 GO
 
 
+
 CREATE PROCEDURE sp_CrearMesa
 AS
 BEGIN
@@ -367,6 +379,8 @@ BEGIN
   VALUES(@idEstadoMesa, NULL, NULL)
 
 END
+
+
 GO
 
 CREATE PROCEDURE sp_AsignarMesa
@@ -418,8 +432,7 @@ BEGIN
 
   SELECT Idmesa, IdEstado, FechaReserva, IdUsuario, Descripcion FROM Mesas m 
   inner join EstadoMesa em on m.IdEstado = em.IdEstadoMesa
-
-
+  
 END
 
 GO
@@ -436,6 +449,18 @@ END
 
 GO
 
+CREATE PROCEDURE sp_DesasignarMesa
+(
+  @idMesa INT
+)
+AS
+BEGIN
+    UPDATE Mesas
+    SET IdUsuario = null
+    WHERE Idmesa = @idMesa
+END
+go
+
 CREATE PROCEDURE sp_DesasignarMesas
 AS
 BEGIN
@@ -444,3 +469,125 @@ BEGIN
 END
 
 GO
+
+CREATE PROCEDURE sp_ListarMesasPorMesero
+(
+ @IdUsuario int 
+)
+AS
+BEGIN
+  SELECT Idmesa, IdEstado, FechaReserva, IdUsuario, Descripcion FROM Mesas m 
+  inner join EstadoMesa em on m.IdEstado = em.IdEstadoMesa 
+  where m.IdUsuario = @IdUsuario
+END
+
+
+GO
+
+
+CREATE PROCEDURE sp_CrearPedido(
+  @IdMesa int,
+  @IdUsuario int
+
+)
+AS
+begin
+  insert into Pedidos (iDMesa,IdUsuario,FechaCreacion,Total)
+  VALUES(@IdMesa,@IdUsuario,GETDATE(),null)
+  select top 1 IdPedido from Pedidos order BY IdPedido DESC
+END
+
+
+
+
+GO
+
+
+CREATE PROCEDURE sp_AgregarAlPedido(
+@IdPedido int,
+@IdMenu int
+)
+AS
+BEGIN
+  INSERT INTO DetallePedidos (IdPedido,IdMenu)
+  VALUES(@IdPedido,@IdMenu)
+END
+
+
+GO
+
+
+CREATE PROCEDURE sp_QuitarDelPedido(
+  @IdDetallePediddo int
+)
+AS
+BEGIN
+  DELETE FROM DetallePedidos WHERE IdDetallePedido = @IdDetallePediddo
+END
+
+
+go
+
+
+CREATE PROCEDURE sp_CerrarPedido(
+@IdPedido int
+)
+AS
+BEGIN
+declare @total decimal
+ select @total = sum(m.Precio) from DetallePedidos dp 
+ inner join Menu m on dp.IdMenu = m.IdMenu
+ where IdPedido = @IdPedido 
+
+  update Pedidos SET Total = @total WHERE IdPedido = @IdPedido
+
+END
+
+GO
+
+
+CREATE PROCEDURE sp_ObtenerDetallePedido(
+  @IdPedido int
+)
+AS
+BEGIN
+  select dp.IdDetallePedido,
+   dp.IdMenu, 
+   dp.IdPedido, 
+   m.Descripcion,
+    m.Precio 
+    from DetallePedidos dp
+  inner join Menu m on dp.IdMenu = m.IdMenu 
+  where IdPedido = @IdPedido
+END
+
+GO
+
+
+CREATE procedure sp_ObtenerMesaPorId(
+@NumeroMesa int
+)
+AS
+BEGIN
+ select m.Idmesa, m.IdEstado, em.Descripcion, IdUsuario,m.FechaReserva  from Mesas m
+ INNER JOIN EstadoMesa em on m.IdEstado = em.IdEstadoMesa
+ where Idmesa = @NumeroMesa
+
+END
+
+GO
+
+create PROCEDURE sp_ObtenerPedidoActual(
+  @NumeroMesa int
+)
+AS
+BEGIN
+
+  select p.IdPedido from Pedidos p
+  inner join Mesas m on p.iDMesa = m.Idmesa
+  inner join EstadoMesa em on m.IdEstado = em.IdEstadoMesa
+   where p.iDMesa = @NumeroMesa AND em.Descripcion = 'Ocupada'
+
+END
+
+go

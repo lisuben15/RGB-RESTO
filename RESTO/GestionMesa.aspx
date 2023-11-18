@@ -11,6 +11,7 @@
         <%-- <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" CssClass="boton-moderno" />--%>
          <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" CssClass="boton-moderno" />
          <asp:Button ID="btnAsignarMesa" runat="server" Text="Asignar Mesa" OnClick="btnAsignarMesa_Click" CssClass="boton-moderno"/>
+         <asp:Button ID="btnDesasignarMesa" runat="server" Text="Desasignar Mesa" OnClick="btnDesasignarMesa_Click" CssClass="boton-moderno"/>
          <asp:Button ID="btnDesasignarMesas" runat="server" Text="Desasignar Mesas" OnClick="btnDesasignarMesas_Click" CssClass="boton-moderno"/>
 
      </div>

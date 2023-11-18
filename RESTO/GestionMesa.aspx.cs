@@ -87,5 +87,13 @@ namespace RESTO
             servicioMesa.desasignarMesas();
             Response.Redirect("GestionMesa.aspx");
         }
+        protected void btnDesasignarMesa_Click(object sender, EventArgs e)
+        {
+            ServicioMesa servicioMesa = new ServicioMesa();
+            int numeroMesa = int.Parse(Session["NumeroMesa"].ToString());
+            servicioMesa.DesasignarMesa(numeroMesa);
+            Response.Redirect("GestionMesa.aspx");
+        }
+
     } 
 }

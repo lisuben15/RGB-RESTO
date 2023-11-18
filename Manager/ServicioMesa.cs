@@ -149,6 +149,27 @@ namespace Manager
                 datos.cerrarConexion();
             }
         }
+        public void DesasignarMesa(int NumeroMesa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("sp_DesasignarMesa");
+                datos.setearParametros("idMesa", NumeroMesa);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
 
         public void desasignarMesas()
         {
@@ -157,9 +178,6 @@ namespace Manager
             {
                 datos.setearProcedimiento("sp_DesasignarMesas");              
                 datos.ejecutarAccion();
-
-
-
             }
             catch (Exception ex)
             {
