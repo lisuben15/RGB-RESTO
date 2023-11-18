@@ -15,12 +15,8 @@ namespace RESTO
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-
                 dgvMesa.DataSource = servicioMesa.ListarMesas();
                 dgvMesa.DataBind();
-            }
         }
 
         protected void btnAsignarMesa_Click(object sender, EventArgs e)
@@ -72,13 +68,13 @@ namespace RESTO
         protected void dgvMesa_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session["NumeroMesa"] = dgvMesa.SelectedDataKey.Value.ToString();         
-            dgvMesa.SelectedRowStyle.BorderColor = Color.Red;
-            if (dgvMesa.SelectedRow.RowIndex != 0)
-            {
+    
+           dgvMesa.SelectedRowStyle.BorderColor = Color.Red;
+            if (dgvMesa.SelectedRow.RowIndex!=0) {
                 dgvMesa.Rows[dgvMesa.SelectedRow.RowIndex - 1].BorderColor = Color.Red;
             }
-            dgvMesa.SelectedRowStyle.ForeColor = Color.Red;
-
+            dgvMesa.SelectedRowStyle.ForeColor= Color.Red;
+ 
         }
 
         protected void btnDesasignarMesas_Click(object sender, EventArgs e)

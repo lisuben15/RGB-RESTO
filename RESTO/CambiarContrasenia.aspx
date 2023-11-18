@@ -14,6 +14,19 @@
         font-size: 20px;
         color: white;
     }
+    .boton-moderno {
+        background-color: midnightblue;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
 </style>
 
 
@@ -32,7 +45,7 @@
 
 
     <div>
-        <asp:Button ID="btnCambiarPass" runat="server" Text="Cambiar contraseña" OnClick="btnCambiarPass_Click"/>
+        <asp:Button CssClass="boton-moderno" ID="btnCambiarPass" runat="server" Text="Cambiar contraseña" OnClick="btnCambiarPass_Click"/>
     </div>
      
 
