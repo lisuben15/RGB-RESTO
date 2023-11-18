@@ -105,7 +105,6 @@
         </div>
         <br />
         <div>
-            <asp:Label ID="LblError" runat="server" Text=" " CssClass="error-label"></asp:Label>
         </div>
     </form>
 </body>
