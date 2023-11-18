@@ -44,7 +44,7 @@
                             <a class="nav-link active" aria-current="page" href="GestionUsuarios.aspx">Personal</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pedidos</a>
+                            <a class="nav-link" href="PaginaMesero.aspx">Pedidos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Gestion_Menu.aspx">Menú</a>

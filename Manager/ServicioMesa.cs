@@ -231,6 +231,7 @@ namespace Manager
 
         }
 
+
         public void CambiarEstado(int IdMesa, int IdEstado)
         {
             AccesoDatos datos = new AccesoDatos();

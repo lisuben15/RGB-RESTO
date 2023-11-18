@@ -34,8 +34,10 @@ namespace RESTO
                         Response.Redirect("PaginaGerente.aspx");
                     break;
                     case 2:
+                        List<Pedido> pedidosPersistidos = new List<Pedido>();
+                        Session.Add("PedidosPersistidos", pedidosPersistidos);
                         Response.Redirect("PaginaMesero.aspx");
-                    break; 
+                    break;
                     default:
                         // code block
                     break;}
