@@ -35,8 +35,7 @@ namespace RESTO
                     break;
                     case 2:
                         Response.Redirect("PaginaMesero.aspx");
-                    break;
-                    
+                    break; 
                     default:
                         // code block
                     break;}

@@ -25,11 +25,25 @@ namespace RESTO
             if (!string.IsNullOrEmpty(txtPassword.Text))
             {
                 ServicioUsuario servicioUsuario = new ServicioUsuario();
-                int idUsuario = int.Parse(Session["IdUsuario"].ToString());
+                string pass = txtPassword.Text;
+                string passConfirm = txtPasswordConfirmation.Text;
+                bool result = pass.Equals(passConfirm, StringComparison.Ordinal);
 
-                servicioUsuario.ModificarContrasenia(idUsuario, txtPassword.Text);
+                if (result)
+                {
+                    int idUsuario = int.Parse(Session["IdUsuario"].ToString());
+                    servicioUsuario.ModificarContrasenia(idUsuario, txtPassword.Text);
+                    Response.Redirect("default.aspx");
 
-                Response.Redirect("default.aspx");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Las contrasenas no coinciden. Verifique los datos ingresados.')</script>");
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('Existen campos vacios. Verifique los datos ingresados.')</script>");
             }
         }
     }
