@@ -21,7 +21,7 @@
               </Columns>
            </asp:GridView>
             </div>
-            <h3>Pedido</h3>
+            <h1>Pedido: <asp:Label ID="lblIdPedido" runat="server"></asp:Label></h1> 
         <div>
              <asp:GridView ID="dgvPedido" runat="server" AutoGenerateColumns="false" class="table table-dark table-striped" style="width: 48%; float: right">
                  <Columns>   

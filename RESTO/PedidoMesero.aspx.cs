@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -20,7 +21,7 @@ namespace RESTO
                 ServicioMenu servicioMenu = new ServicioMenu();
                 dgvMenuPedidos.DataSource = servicioMenu.ListarElementoMenuCompleto();
                 dgvMenuPedidos.DataBind();
-
+                lblIdPedido.Text = "Mesa sin pedido abierto.";
             }
             ServicioPedido servicioPedido = new ServicioPedido();
             int NumeroMesa = int.Parse(Request.QueryString["NumeroMesa"].ToString());
@@ -30,10 +31,15 @@ namespace RESTO
             if (pedido.NumeroMesa == NumeroMesa)
             {
                 IdPedido = pedido.NumeroPedido;
+                lblIdPedido.Text = IdPedido.ToString();
             }
             List<DetallePedido> listaDetallePedidos=servicioPedido.ListaDetallePedido(IdPedido);
             dgvPedido.DataSource = listaDetallePedidos;
             dgvPedido.DataBind();
+            if(IdPedido == 0)
+            {
+                lblIdPedido.Text = "Mesa sin pedido abierto.";
+            }
         }
 
         protected void dgvMenuPedidos_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,12 +69,14 @@ namespace RESTO
             if (mesaConPedido==1)
             {
                 int IdMenu = int.Parse(dgvMenuPedidos.SelectedDataKey.Value.ToString());
-                servicioPedido.AgregarAlPedido(IdPedido,IdMenu); 
+                servicioPedido.AgregarAlPedido(IdPedido,IdMenu);
+                dgvPedido.DataBind();
             }
             else
             {
                 Response.Write("<script>alert('No hay un pedido abierto en esta mesa aun.')</script>");
             }
+            dgvPedido.DataBind();
         }
 
         protected void btnCerrarPedido_Click(object sender, EventArgs e)
@@ -82,14 +90,11 @@ namespace RESTO
                 {
                     pedidosActualizados.Add(pedido);
                 }
-            if (pedidosActualizados.Count == 0)
-            {
-                Response.Write("<script>alert('Se cerro el pedido correctamente.')</script>");
-            }
-            else
-            {
-                Session.Add("PedidosPersistidos", pedidosActualizados);
-            }
+            Session.Add("PedidosPersistidos", pedidosActualizados);
+            List<DetallePedido> pedidosVacio = new List<DetallePedido>();
+            dgvPedido.DataSource = pedidosVacio;
+            dgvPedido.DataBind();
+            lblIdPedido.Text = "Mesa sin pedido abierto.";
         }
 
         protected void btnCrearPedido_Click(object sender, EventArgs e)
@@ -110,6 +115,7 @@ namespace RESTO
                 {
                     ServicioPedido servicioPedido = new ServicioPedido();
                     int idPedido = servicioPedido.CrearPedido(NumeroMesa, mesa.IdUsuario.Value); // falta el otro parametro
+                    lblIdPedido.Text = idPedido.ToString();
                     servicioMesa.CambiarEstado(NumeroMesa, (int)EnumEstadosMesa.Ocupada);
                     Pedido aPersistir = new Pedido();
                     aPersistir.NumeroPedido = idPedido;
