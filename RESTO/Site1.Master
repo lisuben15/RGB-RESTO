@@ -25,6 +25,12 @@
             font-family: 'Verdana', sans-serif; 
             text-shadow:unset; 
         }
+
+         h1 {
+        color: royalblue;
+        font-family: 'Times New Roman', Times, serif;
+         }
+
     </style>
 
 </head>
