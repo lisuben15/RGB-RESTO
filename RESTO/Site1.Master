@@ -32,10 +32,12 @@
             text-shadow:unset; 
         }
 
-         h1 {
-        color: royalblue;
-        font-family: 'Times New Roman', Times, serif;
-         }
+               h1 {
+            color: deeppink;
+            font-family: 'Times New Roman', Times, serif;
+            text-shadow: 2px 2px 3px black;
+               }
+
 
     </style>
 
@@ -68,7 +70,7 @@
                             <a class="nav-link" href="GestionMesa.aspx">Mesa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Cierre del dia</a>
+                            <a class="nav-link" href="CierreDelDia.aspx">Cierre del dia</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="default.aspx">Cerrar sesion</a>

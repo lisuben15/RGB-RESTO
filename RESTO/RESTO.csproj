@@ -70,6 +70,7 @@
     <Content Include="AgregarMenu.aspx" />
     <Content Include="AgregarUsuario.aspx" />
     <Content Include="CambiarContrasenia.aspx" />
+    <Content Include="CierreDelDia.aspx" />
     <Content Include="default.aspx" />
     <Content Include="GestionMesa.aspx" />
     <Content Include="GestionMesa_a_Mesero.aspx" />
@@ -105,6 +106,13 @@
     </Compile>
     <Compile Include="CambiarContrasenia.aspx.designer.cs">
       <DependentUpon>CambiarContrasenia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CierreDelDia.aspx.cs">
+      <DependentUpon>CierreDelDia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CierreDelDia.aspx.designer.cs">
+      <DependentUpon>CierreDelDia.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
