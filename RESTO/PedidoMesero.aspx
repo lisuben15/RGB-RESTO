@@ -9,7 +9,10 @@
             <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click"  CssClass="boton-moderno" />
             <asp:Button ID="btnCerrarPedido" runat="server" Text="Cerrar Pedido" OnClick="btnCerrarPedido_Click"  CssClass="boton-moderno" />
             <asp:Button ID="btnCrearPedido" runat="server" Text="Crear Pedido" OnClick="btnCrearPedido_Click" CssClass="boton-moderno" />
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CssClass="boton-moderno" />
+
        </div>
+
         <div>
            <asp:GridView ID="dgvMenuPedidos" runat="server" AutoGenerateColumns="false" DataKeyNames="IdMenu" OnSelectedIndexChanged="dgvMenuPedidos_SelectedIndexChanged" class="table table-dark table-striped" style="width: 48%; float: left">
                <Columns>   
@@ -21,16 +24,20 @@
               </Columns>
            </asp:GridView>
             </div>
-            <h1>Pedido: <asp:Label ID="lblIdPedido" runat="server"></asp:Label></h1> 
+    <div style="display: flex; justify-content: space-between">
+         <h2>Pedido: <asp:Label ID="lblIdPedido" runat="server"></asp:Label></h2> 
+         <asp:Label CssClass="total" ID="lblTotal" runat="server" Text="$0.00" ></asp:Label>
+    </div>
+           
         <div>
-             <asp:GridView ID="dgvPedido" runat="server" AutoGenerateColumns="false" class="table table-dark table-striped" style="width: 48%; float: right">
+             <asp:GridView ID="dgvPedido" runat="server" AutoGenerateColumns="false" DataKeyNames="IdDetallePedido" OnSelectedIndexChanged="dgvPedido_SelectedIndexChanged" class="table table-dark table-striped" style="width: 48%; float: right">
                  <Columns>   
                      <asp:BoundField HeaderText="Descripcion" DataField="Menu.Descripcion"/>
                      <asp:BoundField HeaderText="Precio" DataField="Menu.Precio"/>
-                     <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion"/>
+                     <asp:CommandField ShowSelectButton="true" SelectText="Quitar" HeaderText="Accion"  />
                 </Columns>
             </asp:GridView>
-       </div>    
+       </div> 
        <style>
     .boton-moderno {
         background-color: midnightblue;
@@ -44,6 +51,12 @@
         margin: 4px 2px;
         cursor: pointer;
         border-radius: 4px;
+    }
+
+    .total {
+        color: darkgreen;
+        font-weight: 700;
+        font-size: 32px;
     }
 
 </style> 
