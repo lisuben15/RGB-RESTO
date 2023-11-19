@@ -22,11 +22,12 @@ namespace RESTO
             Manager.ServicioUsuario servicioUsuario = new Manager.ServicioUsuario();
             Usuario usuario = servicioUsuario.Loguear(TxtUsuario.Text,TxtPassword.Text);
 
-            if(usuario != null){
+            if (usuario != null) {
 
                 Session.Add("DNI", usuario.Dni);
                 Session.Add("IdUsuario", usuario.IdUsuario);
                 Session.Add("IdPerfil", usuario.Perfil.IdPerfil);
+                Session.Add("Nombre", usuario.Nombre + " " + usuario.Apellido);
 
                 switch(usuario.Perfil.IdPerfil) 
                 {

@@ -25,6 +25,12 @@
             font-family: 'Verdana', sans-serif; 
             text-shadow:unset; 
         }
+        .nav-user {
+            font-size: 80%; 
+            text-transform: fullsize-kana; 
+            font-family: 'Verdana', sans-serif; 
+            text-shadow:unset; 
+        }
 
          h1 {
         color: royalblue;
@@ -70,10 +76,13 @@
                          <li class="nav-item">
                          <a class="nav-link" href="CambiarContrasenia.aspx"> Cambiar contraseña</a>
                          </li>
-
+                        <li class="nav-item">
+                         <a class="nav-link" style="float: right; inset-block-end: revert"></a>
+                         </li>
                     </ul>
                 </div>
             </div>
+             <a class="nav-user navbar-brand"><asp:Label runat="server" ID="NombreApellidoUser"></asp:Label></a>
         </nav>
 
 
