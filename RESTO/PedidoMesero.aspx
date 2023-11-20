@@ -56,8 +56,9 @@
     }
 
     .total {
-        color: darkgreen;
+        color: deeppink;
         font-weight: 700;
+        text-shadow: 2px 2px 3px black;
         font-size: 32px;
     }
 
