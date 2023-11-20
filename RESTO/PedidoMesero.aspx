@@ -7,8 +7,8 @@
 
        <div style="margin-right: 20px;">
             <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click"  CssClass="boton-moderno" />
-            <asp:Button ID="btnCerrarPedido" runat="server" Text="Cerrar Pedido" OnClick="btnCerrarPedido_Click"  CssClass="boton-moderno" />
             <asp:Button ID="btnCrearPedido" runat="server" Text="Crear Pedido" OnClick="btnCrearPedido_Click" CssClass="boton-moderno" />
+            <asp:Button ID="btnCerrarPedido" runat="server" Text="Cerrar Pedido" OnClick="btnCerrarPedido_Click"  CssClass="boton-moderno" />
             <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CssClass="boton-moderno" />
 
        </div>
@@ -38,6 +38,8 @@
                 </Columns>
             </asp:GridView>
        </div> 
+    <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
+    <asp:Label ID="lblMensaje2" runat="server" Text=""></asp:Label>
        <style>
     .boton-moderno {
         background-color: midnightblue;

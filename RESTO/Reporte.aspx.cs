@@ -36,7 +36,7 @@ namespace RESTO
             CalcularTotal();
         }
 
-        private void MostrarPedidos()
+        public void MostrarPedidos()
         {
             try
             {
@@ -61,7 +61,7 @@ namespace RESTO
             }
         }
 
-        private void CalcularTotal()
+        public void CalcularTotal()
         {
             decimal total = 0;
 

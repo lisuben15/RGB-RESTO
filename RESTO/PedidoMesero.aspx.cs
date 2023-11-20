@@ -55,23 +55,40 @@ namespace RESTO
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-
-            if (dgvMenuPedidos.SelectedDataKey != null) {
+            if (dgvMenuPedidos.SelectedDataKey != null)
+            {
                 ServicioPedido servicioPedido = new ServicioPedido();
-                int NumeroMesa = int.Parse(Request.QueryString["NumeroMesa"].ToString());
+                int NumeroMesa;
+                int idPedido;
 
-                int IdMenu = int.Parse(dgvMenuPedidos.SelectedDataKey.Value.ToString());
+                if (Request.QueryString["NumeroMesa"] != null && int.TryParse(Request.QueryString["NumeroMesa"].ToString(), out NumeroMesa))
+                {
+                    idPedido = servicioPedido.ObtenerPedidoActual(NumeroMesa);
 
-                int idPedido = servicioPedido.ObtenerPedidoActual(NumeroMesa);
-                servicioPedido.AgregarAlPedido(idPedido, IdMenu);
+                    
+                    if (idPedido > 0)
+                    {
+                        int IdMenu = int.Parse(dgvMenuPedidos.SelectedDataKey.Value.ToString());
+                        servicioPedido.AgregarAlPedido(idPedido, IdMenu);
 
-                List<DetallePedido> listaDetallePedidos = servicioPedido.ListaDetallePedido(idPedido);
-                CalcularTotalAPagar(listaDetallePedidos);
+                        List<DetallePedido> listaDetallePedidos = servicioPedido.ListaDetallePedido(idPedido);
+                        CalcularTotalAPagar(listaDetallePedidos);
 
-                dgvPedido.DataSource = listaDetallePedidos;
-                dgvPedido.DataBind();
+                        dgvPedido.DataSource = listaDetallePedidos;
+                        dgvPedido.DataBind();
+                    }
+                    else
+                    {
+                         lblMensaje.Text = "Por favor, primero cree un pedido antes de agregar elementos.";
+                    }
+                }
+                else
+                {
+                         lblMensaje2.Text = "Por favor, primero cree un pedido antes de agregar elementos.";
+                    
+                }
             }
-           
+
         }
 
         protected void btnCerrarPedido_Click(object sender, EventArgs e)
