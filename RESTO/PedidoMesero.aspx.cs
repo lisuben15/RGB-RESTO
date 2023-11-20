@@ -79,14 +79,10 @@ namespace RESTO
                     }
                     else
                     {
-                         lblMensaje.Text = "Por favor, primero cree un pedido antes de agregar elementos.";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Debes crear un pedido, antes de seleccionar un item.', 'error');", true);
                     }
                 }
-                else
-                {
-                         lblMensaje2.Text = "Por favor, primero cree un pedido antes de agregar elementos.";
-                    
-                }
+               
             }
 
         }

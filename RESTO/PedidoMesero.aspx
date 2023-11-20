@@ -38,8 +38,8 @@
                 </Columns>
             </asp:GridView>
        </div> 
-    <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
-    <asp:Label ID="lblMensaje2" runat="server" Text=""></asp:Label>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
        <style>
     .boton-moderno {
         background-color: midnightblue;
