@@ -135,6 +135,11 @@ namespace Manager
                     aux.Menu.IdMenu = (int)datos.Lector["IdMenu"];
                     aux.Menu.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Menu.Precio = (decimal)datos.Lector["Precio"];
+                    aux.Menu.RequiereStock = (bool)datos.Lector["RequiereStock"];
+                    aux.Menu.Stock = (int)datos.Lector["Stock"];
+
+                    aux.Menu.Categoria = new Categoria();
+                    aux.Menu.Categoria.IdCategoria = (int)datos.Lector["IdCategoria"];
 
                     lista.Add(aux);
                 }
@@ -217,6 +222,37 @@ namespace Manager
                 datos.cerrarConexion();
             }
         }
+
+        public decimal ObtenerTotalFacturado(DateTime Fecha)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                decimal total = 0;
+
+                datos.setearProcedimiento("sp_ObtenerFacturacionDelDia");
+                datos.setearParametros("@Fecha", Fecha);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                                    
+                    total = (decimal)datos.Lector["Total"];
+                    
+                }
+                    return total;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
 
     }

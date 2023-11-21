@@ -49,42 +49,57 @@ namespace RESTO
 
         protected void dgvMenuPedidos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            IdMenuSeleccionado = int.Parse(dgvMenuPedidos.SelectedDataKey.Value.ToString());
+           
             dgvMenuPedidos.SelectedRowStyle.ForeColor=System.Drawing.Color.Red;
-        }
 
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-            if (dgvMenuPedidos.SelectedDataKey != null)
+            ServicioPedido servicioPedido = new ServicioPedido();
+            ServicioMenu servicioMenu = new ServicioMenu();
+            int NumeroMesa;
+            int idPedido;
+
+            if (Request.QueryString["NumeroMesa"] != null)
             {
-                ServicioPedido servicioPedido = new ServicioPedido();
-                int NumeroMesa;
-                int idPedido;
+                NumeroMesa = int.Parse(Request.QueryString["NumeroMesa"].ToString());
+                idPedido = servicioPedido.ObtenerPedidoActual(NumeroMesa);
 
-                if (Request.QueryString["NumeroMesa"] != null && int.TryParse(Request.QueryString["NumeroMesa"].ToString(), out NumeroMesa))
+
+                if (idPedido > 0)
                 {
-                    idPedido = servicioPedido.ObtenerPedidoActual(NumeroMesa);
+                    int IdMenu = int.Parse(dgvMenuPedidos.SelectedDataKey.Value.ToString());
+                    ElementoMenu menu = servicioMenu.ObtenerElementoMenuPorId(IdMenu);
 
-                    
-                    if (idPedido > 0)
+                    if (menu.RequiereStock)
                     {
-                        int IdMenu = int.Parse(dgvMenuPedidos.SelectedDataKey.Value.ToString());
-                        servicioPedido.AgregarAlPedido(idPedido, IdMenu);
+                        if (menu.Stock > 0)
+                        {
+                            servicioPedido.AgregarAlPedido(idPedido, IdMenu);
 
-                        List<DetallePedido> listaDetallePedidos = servicioPedido.ListaDetallePedido(idPedido);
-                        CalcularTotalAPagar(listaDetallePedidos);
+                            menu.Stock--;   // descontamos del stock
 
-                        dgvPedido.DataSource = listaDetallePedidos;
-                        dgvPedido.DataBind();
+                            servicioMenu.ModificarElementoMenu(menu);
+                        }
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Debes crear un pedido, antes de seleccionar un item.', 'error');", true);
+                        servicioPedido.AgregarAlPedido(idPedido, IdMenu);
                     }
+
+
+                    List<DetallePedido> listaDetallePedidos = servicioPedido.ListaDetallePedido(idPedido);
+                    CalcularTotalAPagar(listaDetallePedidos);
+
+
+                    dgvPedido.DataSource = listaDetallePedidos;
+                    dgvPedido.DataBind();
+
                 }
-               
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Debes crear un pedido, antes de seleccionar un item.', 'error');", true);
+                }
             }
 
+            
         }
 
         protected void btnCerrarPedido_Click(object sender, EventArgs e)
@@ -135,10 +150,25 @@ namespace RESTO
         protected void dgvPedido_SelectedIndexChanged(object sender, EventArgs e)
         {
             ServicioPedido servicioPedido = new ServicioPedido();
+            ServicioMenu servicioMenu = new ServicioMenu();
+
             int NumeroMesa = int.Parse(Request.QueryString["NumeroMesa"].ToString());
 
             int idDetallePedido = int.Parse(dgvPedido.SelectedDataKey.Value.ToString());
             int idPedido = servicioPedido.ObtenerPedidoActual(NumeroMesa);
+
+            List<DetallePedido> lista = servicioPedido.ListaDetallePedido(idPedido);
+
+            DetallePedido detallePedidoSeleccionado =  lista.Find(x => x.IdDetallePedido == idDetallePedido);
+
+            if (detallePedidoSeleccionado.Menu.RequiereStock)
+            {
+                detallePedidoSeleccionado.Menu.Stock++;   // descontamos del stock
+
+                servicioMenu.ModificarElementoMenu(detallePedidoSeleccionado.Menu);
+                
+            }
+
             servicioPedido.QuitarDelPedido(idDetallePedido);
 
             List<DetallePedido> listaDetallePedidos = servicioPedido.ListaDetallePedido(idPedido);

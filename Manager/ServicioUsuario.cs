@@ -328,7 +328,7 @@ namespace Manager
         }
 
 
-        public List<Usuario> ListarIdMeseros()
+        public List<Usuario> ListarMeseros()
         {
             List<Usuario> lista = new List<Usuario>();
             AccesoDatos datos = new AccesoDatos();
@@ -341,7 +341,8 @@ namespace Manager
                 {
 
                     Usuario aux = new Usuario();
-                    aux.IdUsuario = (int)datos.Lector["IdUsuario"];                // Mapear
+                    aux.IdUsuario = (int)datos.Lector["IdUsuario"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];   // Mapear
                    
 
                     lista.Add(aux);

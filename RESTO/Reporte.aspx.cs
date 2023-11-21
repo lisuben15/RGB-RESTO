@@ -15,17 +15,10 @@ namespace RESTO
         {
             if (!IsPostBack)
             {
-                
-                var listaIdMeseros = servicioUsuario.ListarIdMeseros();
+                ServicioPedido servicioPedido = new ServicioPedido();
 
-                ddlReporte.DataSource = listaIdMeseros;
-                ddlReporte.DataValueField = "IdUsuario";
-                ddlReporte.DataTextField = "IdUsuario"; 
-                ddlReporte.DataBind();
-                ddlReporte.Items.Insert(0, new ListItem("Seleccione un mesero", "0")); 
-
-                
-                MostrarPedidos();
+               lblTotal.Text = servicioPedido.ObtenerTotalFacturado(DateTime.Now).ToString("N2");
+               
             }
         }
 
@@ -33,7 +26,7 @@ namespace RESTO
         protected void ddlReporte_SelectedIndexChanged(object sender, EventArgs e)
         {
             MostrarPedidos();
-            CalcularTotal();
+           
         }
 
         public void MostrarPedidos()
@@ -61,25 +54,7 @@ namespace RESTO
             }
         }
 
-        public void CalcularTotal()
-        {
-            decimal total = 0;
-
-            foreach (GridViewRow row in dgvReporte.Rows)
-            {
-                if (row.RowType == DataControlRowType.DataRow)
-                {
-                    decimal precio;
-                    if (decimal.TryParse(row.Cells[1].Text, out precio)) 
-                    {
-                        total += precio;
-                    }
-                }
-            }
-
-            
-            txtTotal.Text = total.ToString();
-        }
+       
 
     }
 }

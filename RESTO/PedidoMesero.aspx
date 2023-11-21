@@ -6,7 +6,7 @@
     <br />
 
        <div style="margin-right: 20px;">
-            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click"  CssClass="boton-moderno" />
+           
             <asp:Button ID="btnCrearPedido" runat="server" Text="Crear Pedido" OnClick="btnCrearPedido_Click" CssClass="boton-moderno" />
             <asp:Button ID="btnCerrarPedido" runat="server" Text="Cerrar Pedido" OnClick="btnCerrarPedido_Click"  CssClass="boton-moderno" />
             <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CssClass="boton-moderno" />
@@ -20,7 +20,7 @@
                      <asp:BoundField HeaderText="Precio" DataField="Precio"/>
                      <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion"/>
 
-                     <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion"/>
+                     <asp:CommandField ShowSelectButton="true" SelectText="Agregar" HeaderText="Accion"/>
               </Columns>
            </asp:GridView>
             </div>
@@ -32,6 +32,7 @@
         <div>
              <asp:GridView ID="dgvPedido" runat="server" AutoGenerateColumns="false" DataKeyNames="IdDetallePedido" OnSelectedIndexChanged="dgvPedido_SelectedIndexChanged" class="table table-dark table-striped" style="width: 48%; float: right">
                  <Columns>   
+                     <asp:BoundField HeaderText="IdMenu" DataField="Menu.IdMenu" Visible="false"/>
                      <asp:BoundField HeaderText="Descripcion" DataField="Menu.Descripcion"/>
                      <asp:BoundField HeaderText="Precio" DataField="Menu.Precio"/>
                      <asp:CommandField ShowSelectButton="true" SelectText="Quitar" HeaderText="Accion"  />
