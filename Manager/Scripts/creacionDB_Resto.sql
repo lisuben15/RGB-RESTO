@@ -49,12 +49,14 @@ GO
 
 CREATE TABLE Mesas (
   IdMesa int primary key identity(1,1),
-  IdEstado int not null FOREIGN key references EstadoMesa (IdEstadoMesa),
+  IdEstado int not null FOREIGN key references EstadoMesa (IdEstadoMesa), 
   FechaReserva datetime null, 
   IdUsuario int null FOREIGN key REFERENCES Usuarios (IdUsuario)
 
 )
+
 GO
+
 
 CREATE TABLE Pedidos (
   IdPedido int primary key identity (1,1),
@@ -120,7 +122,7 @@ END
 
 GO
 
-create procedure sp_AgregarUsuario
+CREATE PROCEDURE sp_AgregarUsuario
 (
   @Nombre varchar (250),
   @Apellido varchar(250),
@@ -343,7 +345,7 @@ END
 
 GO
 
-create procedure sp_ModificarElementoMenu
+CREATE procedure sp_ModificarElementoMenu
 (
   @IdMenu int,
   @Descripcion varchar(250),
@@ -357,7 +359,8 @@ BEGIN
   update Menu set Descripcion = @Descripcion,
                   Precio = @Precio,
                   IdCategoria = @IdCategoria,
-                  RequiereStock = @RequiereStock
+                  RequiereStock = @RequiereStock,
+                  Stock = @Stock 
    where IdMenu = @IdMenu
 END
 
@@ -449,18 +452,6 @@ END
 
 GO
 
-CREATE PROCEDURE sp_DesasignarMesa
-(
-  @idMesa INT
-)
-AS
-BEGIN
-    UPDATE Mesas
-    SET IdUsuario = null
-    WHERE Idmesa = @idMesa
-END
-go
-
 CREATE PROCEDURE sp_DesasignarMesas
 AS
 BEGIN
@@ -483,6 +474,21 @@ END
 
 
 GO
+
+CREATE PROCEDURE sp_DesasignarMesa
+(
+  @idMesa INT
+)
+AS
+BEGIN
+    UPDATE Mesas
+    SET IdUsuario = null
+    WHERE Idmesa = @idMesa
+END
+
+
+go
+
 
 
 CREATE PROCEDURE sp_CrearPedido(
@@ -518,11 +524,11 @@ GO
 
 
 CREATE PROCEDURE sp_QuitarDelPedido(
-  @IdDetallePediddo int
+  @IdDetallePedido int
 )
 AS
 BEGIN
-  DELETE FROM DetallePedidos WHERE IdDetallePedido = @IdDetallePediddo
+  DELETE FROM DetallePedidos WHERE IdDetallePedido = @IdDetallePedido
 END
 
 
@@ -546,7 +552,7 @@ END
 GO
 
 
-CREATE PROCEDURE sp_ObtenerDetallePedido(
+create PROCEDURE sp_ObtenerDetallePedido(
   @IdPedido int
 )
 AS
@@ -555,7 +561,10 @@ BEGIN
    dp.IdMenu, 
    dp.IdPedido, 
    m.Descripcion,
-    m.Precio 
+    m.Precio,
+    m.RequiereStock,
+    m.Stock,
+    m.IdCategoria
     from DetallePedidos dp
   inner join Menu m on dp.IdMenu = m.IdMenu 
   where IdPedido = @IdPedido
@@ -590,9 +599,29 @@ BEGIN
 
 END
 
-go
 
-go
+GO
+
+create PROCEDURE sp_ListarIdMeseros
+as BEGIN
+    select IdUsuario, ( Nombre +' ' + Apellido) AS Nombre from  Usuarios where IdPerfil = 2
+end
+
+
+GO
+
+
+CREATE PROCEDURE sp_ObtenerFacturacionDelDia(
+  @Fecha DATETIME
+)
+AS
+BEGIN
+ selecT ISNULL(SUM(Total), 0)as Total from Pedidos where CONVERT(DATE, FechaCreacion) = CONVERT(DATE, @Fecha)
+END
+
+GO
+
+
 CREATE PROCEDURE sp_ObtenerDetallePedidoPorMesero(
   @IdUsuario int
 )
@@ -609,13 +638,9 @@ BEGIN
   where u.IdUsuario = @IdUsuario
 END
 
-go
 
-create PROCEDURE sp_ListarIdMeseros
-as BEGIN
-    select IdUsuario from  Usuarios where IdPerfil = 2
-end
 GO
+
 
 CREATE PROCEDURE sp_ListarPedidosPorMesa(
   @IdMesa int
@@ -631,5 +656,5 @@ BEGIN
     INNER join Menu mn on mn.IdMenu=dp.IdMenu
   where m.IdMesa = @IdMesa
 END
+GO
 
-go
