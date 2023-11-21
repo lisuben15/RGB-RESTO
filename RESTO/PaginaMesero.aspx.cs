@@ -19,6 +19,10 @@ namespace RESTO
 
             ServicioMesa servicioMesa = new ServicioMesa();
             listaMesas = servicioMesa.ListarMesasPorMesero(idUsuario);
+            if(listaMesas.Count == 0)
+            {
+                ltNotify.Text = "No existen mesas asignadas a su usuario.";
+            }
 
             Repetidor.DataSource = listaMesas;
             Repetidor.DataBind();
