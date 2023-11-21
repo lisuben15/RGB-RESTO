@@ -591,3 +591,45 @@ BEGIN
 END
 
 go
+
+go
+CREATE PROCEDURE sp_ObtenerDetallePedidoPorMesero(
+  @IdUsuario int
+)
+AS
+BEGIN
+  select  
+    mn.Descripcion,
+    mn.Precio 
+    from Usuarios u
+    inner join Mesas m on u.IdUsuario=m.IdUsuario
+    inner join Pedidos p on m.Idmesa=p.iDMesa
+    inner join DetallePedidos dp on dp.IdPedido=p.IdPedido
+    INNER join Menu mn on mn.IdMenu=dp.IdMenu
+  where u.IdUsuario = @IdUsuario
+END
+
+go
+
+create PROCEDURE sp_ListarIdMeseros
+as BEGIN
+    select IdUsuario from  Usuarios where IdPerfil = 2
+end
+GO
+
+CREATE PROCEDURE sp_ListarPedidosPorMesa(
+  @IdMesa int
+)
+AS
+BEGIN
+  select  
+    mn.Descripcion,
+    mn.Precio 
+    from Mesas m
+    inner join Pedidos p on m.Idmesa=p.iDMesa
+    inner join DetallePedidos dp on dp.IdPedido=p.IdPedido
+    INNER join Menu mn on mn.IdMenu=dp.IdMenu
+  where m.IdMesa = @IdMesa
+END
+
+go

@@ -21,6 +21,8 @@
                 </ItemTemplate>
             </asp:Repeater>
         </div>
+        <h2><asp:Literal runat="server" ID="ltNotify"/></h2>
+
     </div>
 
     <style>
@@ -61,6 +63,11 @@
         .Libre {
             background: green;
         }
+        h2{
+            color:white;
+            margin-left: 20px;
+        }
+
     </style>
 
 </asp:Content>

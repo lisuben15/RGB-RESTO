@@ -7,12 +7,14 @@
 
      <div style="display: flex; align-items: flex-start; flex-direction: column">
      <div style="margin-right: 20px; display: flex;">
+     <%if (int.Parse(Session["IdPerfil"].ToString()) < 2){%>
          <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" CssClass="boton-moderno" />
         <%-- <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" CssClass="boton-moderno" />--%>
          <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" CssClass="boton-moderno" />
          <asp:Button ID="btnAsignarMesa" runat="server" Text="Asignar Mesa" OnClick="btnAsignarMesa_Click" CssClass="boton-moderno"/>
          <asp:Button ID="btnDesasignarMesa" runat="server" Text="Desasignar Mesa" OnClick="btnDesasignarMesa_Click" CssClass="boton-moderno"/>
          <asp:Button ID="btnDesasignarMesas" runat="server" Text="Desasignar Mesas" OnClick="btnDesasignarMesas_Click" CssClass="boton-moderno"/>
+    <%}%>
 
      </div>
          <div>
@@ -23,7 +25,6 @@
                     <asp:BoundField HeaderText="Mesero" DataField="IdUsuario"/> 
                     <asp:BoundField HeaderText="Fecha Reserva" DataField="FechaReserva"/> 
 
-            
                     <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion"/>
                 </Columns>
             </asp:GridView>

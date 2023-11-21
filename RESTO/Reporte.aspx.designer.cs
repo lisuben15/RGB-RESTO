@@ -24,6 +24,15 @@ namespace RESTO
         protected global::System.Web.UI.WebControls.DropDownList ddlReporte;
 
         /// <summary>
+        /// Control ddlReporteMesa.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlReporteMesa;
+
+        /// <summary>
         /// Control dgvReporte.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace RESTO
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvReporte;
+
+        /// <summary>
+        /// Control lblTotal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotal;
 
         /// <summary>
         /// Control lblFacturacion.
@@ -42,12 +60,12 @@ namespace RESTO
         protected global::System.Web.UI.WebControls.Label lblFacturacion;
 
         /// <summary>
-        /// Control lblTotal.
+        /// Control lblTotalFacturacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotal;
+        protected global::System.Web.UI.WebControls.Label lblTotalFacturacion;
     }
 }
