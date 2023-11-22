@@ -37,6 +37,7 @@
             font-family: 'Times New Roman', Times, serif;
             text-shadow: 2px 2px 3px black;
             align-items: center;
+            font-size: 60px;
                }
 
 

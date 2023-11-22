@@ -45,8 +45,7 @@ namespace RESTO
             }
             else
             {
-                ltNotify.Text = "Usuario o contraseña incorrectos.";
-                ltNotify1.Text = "Por favor, verifique sus datos";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Contraseña o usuario incorrecto, verifique los datos nuevamente', 'error');", true);
             }
         }
 

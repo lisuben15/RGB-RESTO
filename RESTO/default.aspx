@@ -65,7 +65,7 @@
             margin-left: 135px;
             font-size: 18px;
             font-family: Arial, sans-serif;
-            outline: none; /* Elimina el contorno predeterminado en el foco */
+            outline: none; 
         }
 
         .styled-button:focus {
@@ -97,8 +97,7 @@
             <asp:Label ID="Label2" runat="server" Text="Contraseña" CssClass="input-label"></asp:Label>
             <asp:TextBox ID="TxtPassword" runat="server" type="password"></asp:TextBox>
         </div>
-        <h2><asp:Literal runat="server" ID="ltNotify" /></h2>
-        <h2><asp:Literal runat="server" ID="ltNotify1" /></h2>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <div>
             <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" CssClass="styled-button" OnClick="btnIngresar_Click" OnClientClick="return TriggerButtonClick(event, '<%= btnIngresar.ClientID %>');" />
