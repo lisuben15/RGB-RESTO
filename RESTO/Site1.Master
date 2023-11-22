@@ -49,32 +49,35 @@
     <form id="form1" runat="server">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
+                <%if (int.Parse(Session["IdPerfil"].ToString()) < 2)
+             {%>
                 <a class="navbar-brand" href="PaginaGerente.aspx">RGB-Resto</a>
+                <%} %>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="PaginaMesero.aspx">Pedidos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="GestionMesa.aspx">Mesa</a>
-                        </li>
+                        
                         <li class="nav-item">
                      <%if (int.Parse(Session["IdPerfil"].ToString()) < 2)
                          {%>
                             <a class="nav-link active" aria-current="page" href="GestionUsuarios.aspx">Personal</a>
                         </li> 
-                        <%} %>
+                        
                         <li class="nav-item">
+                       
                             <a class="nav-link" href="Gestion_Menu.aspx">Menú</a>
+                        
                         </li>
                         <li class="nav-item">
+
                             <a class="nav-link" href="Reporte.aspx">Reportes</a>
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="GestionMesa.aspx">Mesa</a>
+                            <%} %>
                         </li>                      
                         <li class="nav-item">
                             <a class="nav-link" href="default.aspx">Cerrar sesion</a>

@@ -7,9 +7,11 @@
 
     <section style="display: flex; flex-direction: column; gap: 30px;">
     <div>
+        <h4>Reporte diario por mesero</h4>
         <asp:DropDownList ID="ddlReporte" runat="server" OnSelectedIndexChanged="ddlReporte_SelectedIndexChanged" AutoPostBack="true" style="margin-bottom: 20px;"></asp:DropDownList>
+        <h4>Reporte diario por mesa</h4>
         <asp:DropDownList ID="ddlReporteMesa" runat="server" OnSelectedIndexChanged="ddlReporteMesa_SelectedIndexChanged" AutoPostBack="true" style="margin-bottom: 20px;"></asp:DropDownList>
-
+        <h2>Pedidos tomados</h2>
         <asp:GridView ID="dgvReporte" runat="server" AutoGenerateColumns="false"  class="table table-dark table-striped" style="width: 80%;">
             <Columns>   
                 <asp:BoundField HeaderText="Descripción" DataField="Descripcion"/>
