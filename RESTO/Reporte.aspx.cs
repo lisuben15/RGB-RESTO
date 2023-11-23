@@ -34,8 +34,7 @@ namespace RESTO
                 ddlReporteMesa.DataBind();
                 ddlReporteMesa.Items.Insert(0, new ListItem("Seleccione una mesa", "0"));
 
-                lblTotalFacturacion.Text = servicioPedido.ObtenerTotalFacturado(DateTime.Now).ToString("N2");
-               
+                //lblTotalFacturacionDia.Text = "Facturación total del dia $: " + servicioPedido.ObtenerTotalFacturado(DateTime.Now);
             }
         }
 
@@ -64,6 +63,7 @@ namespace RESTO
                 {
                     dgvReporte.DataSource = servicioPedido.ListaReportePorMesero(IdUsuario);
                     dgvReporte.DataBind();
+                    RemoveRepeatedIdPedidosOnGrid();
                 }
                 else
                 {
@@ -89,6 +89,7 @@ namespace RESTO
                 {
                     dgvReporte.DataSource = servicioPedido.ListaReportePorMesa(NumeroMesa);
                     dgvReporte.DataBind();
+                    RemoveRepeatedIdPedidosOnGrid();
                 }
                 else
                 {
@@ -121,10 +122,34 @@ namespace RESTO
                     }
                 }
             }
+            lblTotalFacturacionDia.Text = "Total facturacion de pedidos mostrados: $" + total.ToString();
+        }
+
+        public void RemoveRepeatedIdPedidosOnGrid()
+        {
+            string CurrentPedido="";
+            int flag = 0;
+            foreach (GridViewRow row in dgvReporte.Rows)
+            {
+                if(flag == 0)
+                {
+                    CurrentPedido = row.Cells[2].Text;
+                    flag = 1;
+                    continue;
+                }
+                if (string.Compare(CurrentPedido, row.Cells[2].Text)==0)
+                {
+                    CurrentPedido = row.Cells[2].Text; 
+                    row.Cells[2].Text = " ";
+                }
+                else
+                {
+                    CurrentPedido = row.Cells[2].Text; 
+                }
+            }
+        }
 
             
-            lblTotal.Text = total.ToString();
-        }
 
     }
 }
