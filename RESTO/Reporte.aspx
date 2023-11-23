@@ -106,15 +106,15 @@
                         <Columns>
                             <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
                             <asp:BoundField HeaderText="Precio" DataField="Precio" />
+                            <asp:BoundField HeaderText="Pedido" DataField="IdMenu" />
                         </Columns>
                     </asp:GridView>
                 </div>
-                <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label> 
             </section>
         </div>
         <div>
-            <asp:Label ID="lblFacturacion" runat="server" Text="Facturación del dia $: " style="font-size: 30px; color: white;"></asp:Label>
-            <asp:Label ID="lblTotalFacturacion" runat="server" Text="$ 0.00" style="font-size: 30px; color: white;"></asp:Label>
+            <asp:Label ID="lblTotalFacturacion" runat="server" style="font-size: 30px; color: white;"></asp:Label>
+             <asp:Label ID="lblTotalFacturacionDia" runat="server" style="font-size: 30px; color: white;"></asp:Label>
         </div>
     </section>
 </asp:Content>
