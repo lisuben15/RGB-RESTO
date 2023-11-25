@@ -84,9 +84,17 @@
         }
          h4 {
          color: black;
-          text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.5); /* Sombra para efecto 3D */
+          text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.5); 
         }   
 
+         .label-h2 {
+        margin: 0 auto 20px;
+        text-align: center;
+        max-width: 80%;
+        color: black;
+        text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.5);
+        font-size: 35px; 
+    }
 
     </style>
 </asp:Content>
@@ -113,8 +121,8 @@
             </section>
         </div>
         <div>
-            <asp:Label ID="lblTotalFacturacion" runat="server" style="font-size: 30px; color: white;"></asp:Label>
-             <asp:Label ID="lblTotalFacturacionDia" runat="server" style="font-size: 30px; color: white;"></asp:Label>
+            <asp:Label ID="lblTotalFacturacionDia" runat="server" CssClass="label-h2"></asp:Label>
+             <asp:Label ID="lblTotalFacturacion" runat="server" CssClass="label-h2"></asp:Label>
         </div>
     </section>
 </asp:Content>

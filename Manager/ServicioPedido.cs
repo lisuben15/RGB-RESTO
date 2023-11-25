@@ -206,7 +206,7 @@ namespace Manager
                     ElementoMenu aux = new ElementoMenu();
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
-                   
+                    aux.IdMenu = (int)datos.Lector["IdPedido"];
 
                     lista.Add(aux);
                 }

@@ -12,7 +12,7 @@ namespace RESTO
         ServicioUsuario servicioUsuario = new ServicioUsuario();
         ServicioMesa servicioMesa = new ServicioMesa();
 
-
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,7 +34,7 @@ namespace RESTO
                 ddlReporteMesa.DataBind();
                 ddlReporteMesa.Items.Insert(0, new ListItem("Seleccione una mesa", "0"));
 
-                //lblTotalFacturacionDia.Text = "Facturación total del dia $: " + servicioPedido.ObtenerTotalFacturado(DateTime.Now);
+                lblTotalFacturacionDia.Text = "Facturación total del dia $: " + servicioPedido.ObtenerTotalFacturado(DateTime.Now);
             }
         }
 
@@ -50,7 +50,7 @@ namespace RESTO
         {
             ddlReporteMesa.SelectedIndex = 0;
             MostrarPedidos();
-           
+            CalcularTotal();
         }
 
         public void MostrarPedidos()
@@ -122,7 +122,7 @@ namespace RESTO
                     }
                 }
             }
-            lblTotalFacturacionDia.Text = "Total facturacion de pedidos mostrados: $" + total.ToString();
+            lblTotalFacturacionDia.Text = "Total facturacion de pedidos: $" + total.ToString();
         }
 
         public void RemoveRepeatedIdPedidosOnGrid()
