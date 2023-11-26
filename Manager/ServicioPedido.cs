@@ -30,6 +30,7 @@ namespace Manager
                    IdPedido = (int)datos.Lector["IdPedido"];
                  
                 }
+                GuardarFechaPedido(IdPedido);
                 return IdPedido;
 
 
@@ -114,6 +115,32 @@ namespace Manager
         }
 
 
+        public void GuardarFechaPedido(int IdPedido)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string Fecha = DateTime.Now.ToShortDateString();
+            string Hora = DateTime.Now.ToShortTimeString();
+
+            try
+            {
+                datos.setearProcedimiento("sp_GuardarFechaPedido");
+                datos.setearParametros("@IdPedido", IdPedido);
+                datos.setearParametros("@Fecha", Fecha);
+                datos.setearParametros("@Hora", Hora);
+                datos.ejecutarLectura();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+        }
 
         public List<DetallePedido> ListaDetallePedido(int IdPedido)
         {
@@ -208,6 +235,65 @@ namespace Manager
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     aux.IdMenu = (int)datos.Lector["IdPedido"];
 
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public List<ElementoMenu> FiltrarPedidosDelDia(List<ElementoMenu> listaPedidosHistoricos)
+        {
+            List<int> listaIdPedidosHoy = ObtenerPedidosDelDia();
+            List<ElementoMenu> listaFiltrada = new List<ElementoMenu>();
+            AccesoDatos datos = new AccesoDatos();
+            string FechaHoy = DateTime.Now.ToShortDateString();
+
+            try
+            {
+                foreach (ElementoMenu pedido in listaPedidosHistoricos)
+                {
+                    if (listaIdPedidosHoy.Contains(pedido.IdMenu))
+                    {
+                        listaFiltrada.Add(pedido);
+                    }
+                }
+                return listaFiltrada;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public List<int> ObtenerPedidosDelDia()
+        {
+            List<int> lista = new List<int>();
+            AccesoDatos datos = new AccesoDatos();
+            string FechaHoy = DateTime.Now.ToShortDateString();
+
+            try
+            {
+                datos.setearProcedimiento("sp_ObtenerPedidosDelDia");
+                datos.setearParametros("@Fecha", FechaHoy);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+
+                    int aux = new int();
+                    aux = (int)datos.Lector["IdPedido"];
                     lista.Add(aux);
                 }
                 return lista;

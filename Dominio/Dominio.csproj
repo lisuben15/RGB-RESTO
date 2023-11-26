@@ -46,6 +46,7 @@
     <Compile Include="ElementoMenu.cs" />
     <Compile Include="EnumEstadosMesa.cs" />
     <Compile Include="EstadoMesa.cs" />
+    <Compile Include="FechaPedido.cs" />
     <Compile Include="Mesa.cs" />
     <Compile Include="Pedido.cs" />
     <Compile Include="Perfil.cs" />

@@ -38,6 +38,30 @@ namespace RESTO
             }
         }
 
+        protected void ddlReporteTimelapse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if((ddlReporte.SelectedIndex == 0)&&(ddlReporteMesa.SelectedIndex == 0))
+            {
+                //Nada.
+            }
+            else
+            {
+                if(ddlReporte.SelectedIndex == 0)
+                {
+                    ddlReporteMesa.SelectedIndex = 0;
+                    MostrarPedidosMesa();
+                    CalcularTotal();
+                }
+                else
+                {
+                    ddlReporte.SelectedIndex = 0;
+                    MostrarPedidos();
+                    CalcularTotal();
+                }
+            }
+
+        }
+        
         protected void ddlReporteMesa_SelectedIndexChanged(object sender, EventArgs e)
         {
             ddlReporte.SelectedIndex = 0;
@@ -61,9 +85,16 @@ namespace RESTO
 
                 if (IdUsuario != 0) 
                 {
-                    dgvReporte.DataSource = servicioPedido.ListaReportePorMesero(IdUsuario);
+                    if (ddlReporteTimelapse.SelectedValue == "0")
+                    {
+                        dgvReporte.DataSource = servicioPedido.ListaReportePorMesero(IdUsuario);
+                    }
+                    else
+                    {
+                        dgvReporte.DataSource = servicioPedido.FiltrarPedidosDelDia(servicioPedido.ListaReportePorMesero(IdUsuario));
+                    }
                     dgvReporte.DataBind();
-                    RemoveRepeatedIdPedidosOnGrid();
+                    //RemoveRepeatedIdPedidosOnGrid();
                 }
                 else
                 {
@@ -87,13 +118,20 @@ namespace RESTO
 
                 if (NumeroMesa != 0) 
                 {
-                    dgvReporte.DataSource = servicioPedido.ListaReportePorMesa(NumeroMesa);
+                    if (ddlReporteTimelapse.SelectedValue == "0")
+                    {
+                        dgvReporte.DataSource = servicioPedido.ListaReportePorMesa(NumeroMesa);
+                    }
+                    else
+                    {
+
+                        dgvReporte.DataSource = servicioPedido.FiltrarPedidosDelDia(servicioPedido.ListaReportePorMesa(NumeroMesa));
+                    }
                     dgvReporte.DataBind();
-                    RemoveRepeatedIdPedidosOnGrid();
+                    //RemoveRepeatedIdPedidosOnGrid();
                 }
                 else
                 {
-                    
                     dgvReporte.DataSource = null;
                     dgvReporte.DataBind();
                 }

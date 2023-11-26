@@ -103,9 +103,15 @@
 
     <section style="display: flex; flex-direction: column; gap: 30px;">
         <div>
-            <h4>Reporte diario por mesero</h4>
+            <h4>Historico/Diario</h4>
+            <asp:DropDownList ID="ddlReporteTimelapse" OnSelectedIndexChanged="ddlReporteTimelapse_SelectedIndexChanged" AutoPostBack="true" runat="server">   
+                <asp:ListItem Text="Historico" Value="0" />
+                <asp:ListItem Text="Dia de hoy" Value="1" />
+            </asp:DropDownList>
+
+            <h4>Reporte por mesero</h4>
             <asp:DropDownList ID="ddlReporte" runat="server" OnSelectedIndexChanged="ddlReporte_SelectedIndexChanged" AutoPostBack="true" style="margin-bottom: 20px;"></asp:DropDownList>
-            <h4>Reporte diario por mesa</h4>
+            <h4>Reporte por mesa</h4>
             <asp:DropDownList ID="ddlReporteMesa" runat="server" OnSelectedIndexChanged="ddlReporteMesa_SelectedIndexChanged" AutoPostBack="true" style="margin-bottom: 20px;"></asp:DropDownList>
             <h2>Pedidos tomados</h2>
             <section>
