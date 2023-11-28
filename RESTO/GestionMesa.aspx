@@ -22,8 +22,7 @@
                 <Columns>   
                     <asp:BoundField HeaderText="Número de mesa" DataField="NumeroMesa"/>
                     <asp:BoundField HeaderText="Estado" DataField="Estado.Descripcion"/> 
-                    <asp:BoundField HeaderText="Mesero" DataField="IdUsuario"/> 
-                    <asp:BoundField HeaderText="Fecha Reserva" DataField="FechaReserva"/> 
+                    <asp:BoundField HeaderText="Mesero" DataField="IdUsuario"/>                     
 
                     <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion"/>
                 </Columns>

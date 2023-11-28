@@ -4,8 +4,47 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <h1 class="text-center">Mesas asignadas</h1>
-        <br />
+
+        <h1 class="text-center">Mesas asignadas</h1>    
+        <table>
+            <tr>
+                <td> 
+                     <h3> RESERVAR </h3>
+                     <div class="reserva-container">
+                         <div style="display: flex; flex-direction: column; gap: 30px;">
+                             <asp:DropDownList ID="ddlSeleccionMesa" runat="server" AutoPostBack="true" style="margin-bottom: 20px;"></asp:DropDownList>
+                             <asp:Calendar ID="Calendario" runat="server"></asp:Calendar>
+                         </div>
+                         <div style="display: flex; flex-direction: column; gap: 30px;">
+                              <asp:Label ID="lblHora" runat="server" Text="Hora"></asp:Label>
+                              <asp:TextBox ID="txtHora" runat="server"></asp:TextBox>
+
+                              <asp:Label ID="lblMinutos" runat="server" Text="Minutos"></asp:Label>
+                              <asp:TextBox ID="txtMinutos" runat="server"></asp:TextBox>
+
+                               <asp:Label ID="lblCliente" runat="server" Text="DNI DEL CLIENTE: "></asp:Label>
+                               <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+
+                              <asp:Button ID="btnReservar" runat="server" Text="Reservar" OnClick="btnReservar_Click" />
+                         </div>
+                         <asp:Label CssClass="error" ID="lblMensajeValidacion" runat="server" Text=""></asp:Label>
+                         <asp:Label CssClass="exito" ID="lblMensajeExitoso" runat="server" Text=""></asp:Label>
+
+                     </div>
+
+                </td>              
+                <td> 
+                      <h3> RESERVAS DE HOY </h3>                   
+                         <asp:GridView ID="dgvReservas" runat="server"  class="table table-dark table-striped scrollable-grid" style="width: 250%;">
+                            <Columns>                             
+                            </Columns>
+                        </asp:GridView>
+                   
+                </td>
+            </tr>
+        </table>
+
+      
 
         <div class="card-container row row-cols-1 row-cols-md-4 g-3 mt-4">
             <asp:Repeater ID="Repetidor" runat="server">
@@ -26,6 +65,22 @@
     </div>
 
     <style>
+
+        .reserva-container {
+            display: flex;
+            gap: 50px;
+        }
+
+        .error {
+            color: red;
+            font-size: 16px;
+        }
+
+        .exito {
+            color: darkgreen;
+            font-size: 16px;
+        }
+
         .mesa {
             display: flex;
             align-items: center;
@@ -66,6 +121,25 @@
         h2{
             color:white;
             margin-left: 20px;
+        }
+
+        .scrollable-grid {
+            width: 60%;
+            border-collapse: collapse;
+            max-width: 700px;
+            margin: 0 auto; 
+        }
+        .scrollable-grid th,
+        .scrollable-grid td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .scrollable-grid th {
+            background-color: #333;
+            color: #fff;
+            position: sticky;
+            top: 0;
         }
 
     </style>

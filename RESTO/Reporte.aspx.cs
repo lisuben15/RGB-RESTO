@@ -34,7 +34,7 @@ namespace RESTO
                 ddlReporteMesa.DataBind();
                 ddlReporteMesa.Items.Insert(0, new ListItem("Seleccione una mesa", "0"));
 
-                lblTotalFacturacionDia.Text = "Facturación total del dia $: " + servicioPedido.ObtenerTotalFacturado(DateTime.Now);
+                lblTotalFacturacion.Text = "Facturación total del dia $: " + servicioPedido.ObtenerTotalFacturado(DateTime.Now);
             }
         }
 
@@ -160,7 +160,7 @@ namespace RESTO
                     }
                 }
             }
-            lblTotalFacturacionDia.Text = "Total facturacion de pedidos: $" + total.ToString();
+            lblTotal.Text = "Total facturacion de pedidos: $" + total.ToString();
         }
 
         public void RemoveRepeatedIdPedidosOnGrid()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Web;
@@ -115,23 +116,61 @@ namespace RESTO
 
             Response.Redirect("PaginaMesero.aspx");
         }
-
+        
         protected void btnCrearPedido_Click(object sender, EventArgs e)
         {
             ServicioMesa servicioMesa = new ServicioMesa();
             int NumeroMesa = int.Parse(Request.QueryString["NumeroMesa"].ToString());
 
             Mesa mesa = servicioMesa.ObtenerMesaPorId(NumeroMesa);
+
             if(mesa.Estado.Descripcion == "Libre")
             {
-                ServicioPedido servicioPedido = new ServicioPedido();
-                int idPedido = servicioPedido.CrearPedido(NumeroMesa, mesa.IdUsuario.Value); // falta el otro parametro
-                lblIdPedido.Text = idPedido.ToString();
-                servicioMesa.CambiarEstado(NumeroMesa, (int)EnumEstadosMesa.Ocupada);
-                 
+                DateTime FechaActual = DateTime.Now;
+
+                if (!servicioMesa.ExisteReserva(NumeroMesa, FechaActual)) //si no existe puedo crear
+                {
+
+                    ServicioPedido servicioPedido = new ServicioPedido();
+                    int idPedido = servicioPedido.CrearPedido(NumeroMesa, mesa.IdUsuario.Value);
+                    lblIdPedido.Text = idPedido.ToString();
+                    servicioMesa.CambiarEstado(NumeroMesa, (int)EnumEstadosMesa.Ocupada);
+
+                   
+
+                }
+                else {
+
+                    string dniCliente = txtDniCliente.Text;
+
+                    if (!string.IsNullOrEmpty(dniCliente)) {
+
+                        if (servicioMesa.CoincideReserva(NumeroMesa, dniCliente))
+                        {
+                            ServicioPedido servicioPedido = new ServicioPedido();
+                            int idPedido = servicioPedido.CrearPedido(NumeroMesa, mesa.IdUsuario.Value);
+                            lblIdPedido.Text = idPedido.ToString();
+                            servicioMesa.CambiarEstado(NumeroMesa, (int)EnumEstadosMesa.Ocupada);
+                        }
+                        else
+                        {
+                            //MENSAJE DE ERROR
+                            lblError.Text = "La reserva no coincide. Por favor, verifique la información.";
+                        }
+
+                    }
+                    else
+                    {
+                        lblError.Text = "No se puede generar un pedido. En breve tiene una reserva";
+                    }
+
+                  
+
+
+                }
             }
         }
-
+        
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("PaginaMesero.aspx");

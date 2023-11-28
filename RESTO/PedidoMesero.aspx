@@ -6,12 +6,18 @@
     <br />
 
        <div style="margin-right: 20px;">
-           
+
+            
             <asp:Button ID="btnCrearPedido" runat="server" Text="Crear Pedido" OnClick="btnCrearPedido_Click" CssClass="boton-moderno" />
             <asp:Button ID="btnCerrarPedido" runat="server" Text="Cerrar Pedido" OnClick="btnCerrarPedido_Click"  CssClass="boton-moderno" />
             <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CssClass="boton-moderno" />
 
        </div>
+    <div>   
+        <asp:Label ID="lblDniCliente" runat="server" Text="NÚMERO DE RESERVA: "></asp:Label>
+        <asp:TextBox ID="txtDniCliente" runat="server"></asp:TextBox>
+        <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
+    </div>
 
         <div>
            <asp:GridView ID="dgvMenuPedidos" runat="server" AutoGenerateColumns="false" DataKeyNames="IdMenu" OnSelectedIndexChanged="dgvMenuPedidos_SelectedIndexChanged" class="table table-dark table-striped" style="width: 48%; float: left">
