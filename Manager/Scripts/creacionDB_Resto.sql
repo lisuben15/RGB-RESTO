@@ -50,10 +50,10 @@ GO
 CREATE TABLE Mesas (
   IdMesa int primary key identity(1,1),
   IdEstado int not null FOREIGN key references EstadoMesa (IdEstadoMesa), 
-  FechaReserva datetime null, 
   IdUsuario int null FOREIGN key REFERENCES Usuarios (IdUsuario)
-
+  
 )
+
 
 GO
 
@@ -72,6 +72,17 @@ CREATE TABLE DetallePedidos (
   IdPedido int FOREIGN key REFERENCES Pedidos(IdPedido),
   IdMenu int FOREIGN key references Menu(IdMenu)
 )
+GO
+
+create TABLE Reservas
+(
+  IdReserva int primary key identity (1,1),
+  FechaReserva DATETIME not null,
+  NumeroMesa int not null FOREIGN KEY  REFERENCES Mesas (IdMesa),
+  dniCliente VARCHAR (10) not null
+
+)
+
 GO
 
 
@@ -416,7 +427,7 @@ BEGIN
 END
 
 GO
-
+ 
 CREATE PROCEDURE sp_EliminarMesa
 (
   @IdMesa int
@@ -433,7 +444,7 @@ CREATE PROCEDURE sp_ListarMesas
 AS
 BEGIN
 
-  SELECT Idmesa, IdEstado, FechaReserva, IdUsuario, Descripcion FROM Mesas m 
+  SELECT Idmesa, IdEstado, IdUsuario, Descripcion FROM Mesas m 
   inner join EstadoMesa em on m.IdEstado = em.IdEstadoMesa
   
 END
@@ -467,9 +478,9 @@ CREATE PROCEDURE sp_ListarMesasPorMesero
 )
 AS
 BEGIN
-  SELECT Idmesa, IdEstado, FechaReserva, IdUsuario, Descripcion FROM Mesas m 
+  SELECT Idmesa, IdEstado, IdUsuario, Descripcion FROM Mesas m 
   inner join EstadoMesa em on m.IdEstado = em.IdEstadoMesa 
-  where m.IdUsuario = @IdUsuario
+  where m.IdUsuario = @IdUsuario 
 END
 
 
@@ -578,7 +589,7 @@ CREATE procedure sp_ObtenerMesaPorId(
 )
 AS
 BEGIN
- select m.Idmesa, m.IdEstado, em.Descripcion, IdUsuario,m.FechaReserva  from Mesas m
+ select m.Idmesa, m.IdEstado, em.Descripcion, IdUsuario from Mesas m
  INNER JOIN EstadoMesa em on m.IdEstado = em.IdEstadoMesa
  where Idmesa = @NumeroMesa
 
@@ -629,7 +640,8 @@ AS
 BEGIN
   select  
     mn.Descripcion,
-    mn.Precio 
+    mn.Precio,
+    dp.IdPedido 
     from Usuarios u
     inner join Mesas m on u.IdUsuario=m.IdUsuario
     inner join Pedidos p on m.Idmesa=p.iDMesa
@@ -649,12 +661,109 @@ AS
 BEGIN
   select  
     mn.Descripcion,
-    mn.Precio 
+    mn.Precio,
+    dp.IdPedido 
     from Mesas m
     inner join Pedidos p on m.Idmesa=p.iDMesa
     inner join DetallePedidos dp on dp.IdPedido=p.IdPedido
     INNER join Menu mn on mn.IdMenu=dp.IdMenu
   where m.IdMesa = @IdMesa
 END
+
+
+
 GO
 
+
+CREATE TABLE FechasPedidos(
+	IdPedido int not null,
+	Fecha varchar(12) not null,
+	Hora varchar(8) not null,
+)
+go
+
+create procedure sp_AgregarFechaPedido  (    @IdPedido int,    @Fecha varchar (12), @Hora varchar (8)  )  
+as   BEGIN     
+insert into FechasPedidos (IdPedido, Fecha, Hora) 
+values (@IdPedido, @Fecha, @Hora)  
+end
+go
+
+create procedure sp_ObtenerPedidosDelDia  (    @Fecha varchar (12)  )  
+as   BEGIN      
+SELECT IdPedido FROM FechasPedidos 
+WHERE Fecha = @Fecha  END
+
+
+go
+
+
+create procedure sp_GuardarFechaPedido  (    @IdPedido int ,    @Fecha varchar (12), @Hora varchar (8)  )  
+as   BEGIN      
+insert into FechasPedidos (IdPedido, Fecha, Hora) values (@IdPedido, @Fecha, @Hora)  end
+
+
+GO
+
+
+create PROCEDURE sp_ValidarReserva(
+   @NumeroMesa int,
+  @FechaReserva DATETIME
+)
+AS
+BEGIN
+  select NumeroMesa  from Reservas 
+  WHERE NumeroMesa = @NumeroMesa 
+  AND ((@FechaReserva  BETWEEN FechaReserva and DATEADD(HOUR,2,FechaReserva) )
+  OR (DATEADD(HOUR,2,@FechaReserva)  BETWEEN FechaReserva and DATEADD(HOUR,2,FechaReserva)))
+
+END
+
+
+
+GO
+
+
+
+CREATE PROCEDURE sp_ReservarMesa(
+  @FechaReserva DATETIME,
+  @NumeroMesa int,
+  @dniCliente varchar(10)
+)
+as
+BEGIN
+  insert into Reservas (FechaReserva,NumeroMesa,dniCliente) 
+  values(@FechaReserva,@NumeroMesa,@dniCliente) 
+end
+
+
+GO
+
+
+CREATE PROCEDURE sp_ListarReservas
+AS
+BEGIN
+  SELECT  FechaReserva, NumeroMesa, dniCliente FROM Reservas
+  where FechaReserva >= getdate()
+END
+
+
+GO
+
+
+CREATE PROCEDURE sp_CoincideReserva(
+   @NumeroMesa int,
+  @dniCliente varchar(10)
+)
+AS
+BEGIN
+
+  declare @FechaReserva datetime = getdate()
+  select NumeroMesa  from Reservas 
+  WHERE NumeroMesa = @NumeroMesa 
+  AND (@FechaReserva  BETWEEN FechaReserva and DATEADD(HOUR,2,FechaReserva) )
+  and dniCliente = @dniCliente
+
+END
+
+GO

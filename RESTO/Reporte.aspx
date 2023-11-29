@@ -105,8 +105,8 @@
         <div>
             <h4>Historico/Diario</h4>
             <asp:DropDownList ID="ddlReporteTimelapse" OnSelectedIndexChanged="ddlReporteTimelapse_SelectedIndexChanged" AutoPostBack="true" runat="server">   
-                <asp:ListItem Text="Historico" Value="0" />
-                <asp:ListItem Text="Dia de hoy" Value="1" />
+                 <asp:ListItem Text="Historico" Value="0" />
+                 <asp:ListItem Text="Dia de hoy" Value="1" />
             </asp:DropDownList>
 
             <h4>Reporte por mesero</h4>
@@ -124,6 +124,7 @@
                         </Columns>
                     </asp:GridView>
                 </div>
+                <asp:Label ID="lblTotal" runat="server" Text="Total de la lista: " style="font-size: 30px; color: white;" ></asp:Label> 
             </section>
         </div>
         <div>

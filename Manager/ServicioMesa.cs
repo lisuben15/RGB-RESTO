@@ -70,7 +70,7 @@ namespace Manager
                     mesa.Estado.idEstadoMesa = (int)datos.Lector["IdEstado"];
                     mesa.Estado.Descripcion = (string)datos.Lector["Descripcion"];
                     mesa.IdUsuario = datos.Lector["IdUsuario"] != DBNull.Value ? (int?)datos.Lector["IdUsuario"] : null;
-                    mesa.FechaReserva = datos.Lector["FechaReserva"] != DBNull.Value ? (DateTime?)datos.Lector["FechaReserva"] : null;
+                    
                    
                     lista.Add(mesa);
                 }
@@ -107,7 +107,7 @@ namespace Manager
                     mesa.Estado.idEstadoMesa = (int)datos.Lector["IdEstado"];
                     mesa.Estado.Descripcion = (string)datos.Lector["Descripcion"];
                     mesa.IdUsuario = datos.Lector["IdUsuario"] != DBNull.Value ? (int?)datos.Lector["IdUsuario"] : null;
-                    mesa.FechaReserva = datos.Lector["FechaReserva"] != DBNull.Value ? (DateTime?)datos.Lector["FechaReserva"] : null;
+                    
 
                     lista.Add(mesa);
                 }
@@ -213,7 +213,7 @@ namespace Manager
                     mesa.Estado.idEstadoMesa = (int)datos.Lector["IdEstado"];
                     mesa.Estado.Descripcion = (string)datos.Lector["Descripcion"];
                     mesa.IdUsuario = datos.Lector["IdUsuario"] != DBNull.Value ? (int?)datos.Lector["IdUsuario"] : null;
-                    mesa.FechaReserva = datos.Lector["FechaReserva"] != DBNull.Value ? (DateTime?)datos.Lector["FechaReserva"] : null;
+                    
 
 
                 }
@@ -257,6 +257,129 @@ namespace Manager
             }
 
         }
+
+
+        public bool ExisteReserva(int IdMesa, DateTime FechaReserva)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("sp_ValidarReserva");
+                datos.setearParametros("@NumeroMesa", IdMesa);
+                datos.setearParametros("@FechaReserva", FechaReserva);
+
+                datos.ejecutarLectura();
+                bool valor = false;
+                while (datos.Lector.Read())
+                {
+                    valor = datos.Lector["NumeroMesa"] != DBNull.Value; 
+                }
+                return valor;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+
+        public void ReservarMesa(DateTime FechaReserva, int numeroMesa, string dniCliente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("sp_ReservarMesa");
+                datos.setearParametros("@FechaReserva", FechaReserva);
+                datos.setearParametros("@NumeroMesa", numeroMesa);
+                datos.setearParametros("@dniCliente", dniCliente);
+
+                datos.ejecutarAccion();
+  
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+        }
+
+
+        public List<Reserva> ListarMesasReservadas()
+        {
+            List<Reserva> lista = new List<Reserva>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("sp_ListarReservas");
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Reserva reserva = new Reserva();
+
+                    reserva.FechaReserva = (DateTime)datos.Lector["FechaReserva"];   // Mapear
+                    reserva.NumeroMesa = (int)datos.Lector["NumeroMesa"];                
+                    reserva.dniCliente = (string)datos.Lector["dniCliente"];                
+
+                    lista.Add(reserva);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+
+
+        public bool CoincideReserva(int IdMesa, string dniCliente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("sp_CoincideReserva");
+                datos.setearParametros("@NumeroMesa", IdMesa);
+                datos.setearParametros("@dniCliente", dniCliente);
+
+                datos.ejecutarLectura();
+                bool valor = false; 
+                while (datos.Lector.Read())
+                {
+                    valor = datos.Lector["NumeroMesa"] != DBNull.Value;
+                }
+                return valor;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
 
 
     }

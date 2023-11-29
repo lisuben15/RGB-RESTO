@@ -10,9 +10,7 @@ namespace Dominio
     {
         public int NumeroMesa {  get; set; }
         public EstadoMesa Estado {  get; set; }
-        public int? IdUsuario { get; set; }
-        public DateTime? FechaReserva { get; set; }
-
+        public int? IdUsuario { get; set; }    
 
     }
 }
