@@ -31,6 +31,9 @@ namespace RESTO
                     int idCategoriaSeleccionado = Convert.ToInt32(ddlCategorias.SelectedItem.Value);
                     dgvMenu.DataSource = servicioMenu.ListarElementoMenu(idCategoriaSeleccionado);
                     dgvMenu.DataBind();
+
+                    dgvStock.DataSource = servicioMenu.ListarStock();
+                    dgvStock.DataBind();
                 }
                 catch (Exception)
                 {

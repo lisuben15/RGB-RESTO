@@ -238,5 +238,39 @@ namespace Manager
 
 
 
+        public List<ElementoMenu> ListarStock()
+        {
+            List<ElementoMenu> lista = new List<ElementoMenu>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_ListarStock");
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+
+                    ElementoMenu aux = new ElementoMenu();
+                    aux.IdMenu = (int)datos.Lector["IdMenu"];                // Mapear
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];                
+                    aux.Stock = (int)datos.Lector["Stock"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
     }
 }
