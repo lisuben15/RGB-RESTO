@@ -5,7 +5,23 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
 
-        <h1 class="text-center">Mesas asignadas</h1>    
+        <h1 class="text-center">Mesas asignadas</h1>  
+        
+        <div class="card-container row row-cols-1 row-cols-md-4 g-3 mt-4">
+    <asp:Repeater ID="Repetidor" runat="server">
+        <ItemTemplate>
+            <div class="col-6 col-md-3 mb-3">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="mesa mb-2">
+                        <img src="https://tse1.mm.bing.net/th?id=OIP.tfNeweScwwLf1x8y7iNgDAHaFF&pid=Api&P=0&h=180" alt="Mesa" class="icono-mesa" />
+                    </div>
+                    <asp:Button class='<%#"boton-moderno " + Eval("Estado.Descripcion") %>' ID="btnMesa" runat="server" Text='<%#"Mesa " + Eval("NumeroMesa") %>' CommandArgument='<%#Eval("NumeroMesa") %>' CommandName="NumeroMesa"  OnClick="btnMesa_Click" />
+                </div>
+            </div>
+        </ItemTemplate>
+    </asp:Repeater>
+</div>
+
         <table>
             <tr>
                 <td> 
@@ -27,8 +43,8 @@
 
                               <asp:Button ID="btnReservar" runat="server" Text="Reservar" OnClick="btnReservar_Click" />
                          </div>
-                         <asp:Label CssClass="error" ID="lblMensajeValidacion" runat="server" Text=""></asp:Label>
-                         <asp:Label CssClass="exito" ID="lblMensajeExitoso" runat="server" Text=""></asp:Label>
+                         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                         
 
                      </div>
 
@@ -46,20 +62,7 @@
 
       
 
-        <div class="card-container row row-cols-1 row-cols-md-4 g-3 mt-4">
-            <asp:Repeater ID="Repetidor" runat="server">
-                <ItemTemplate>
-                    <div class="col-6 col-md-3 mb-3">
-                        <div class="d-flex flex-column align-items-center">
-                            <div class="mesa mb-2">
-                                <img src="https://tse1.mm.bing.net/th?id=OIP.tfNeweScwwLf1x8y7iNgDAHaFF&pid=Api&P=0&h=180" alt="Mesa" class="icono-mesa" />
-                            </div>
-                            <asp:Button class='<%#"boton-moderno " + Eval("Estado.Descripcion") %>' ID="btnMesa" runat="server" Text='<%#"Mesa " + Eval("NumeroMesa") %>' CommandArgument='<%#Eval("NumeroMesa") %>' CommandName="NumeroMesa"  OnClick="btnMesa_Click" />
-                        </div>
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
-        </div>
+        
         <h2><asp:Literal runat="server" ID="ltNotify"/></h2>
 
     </div>
@@ -87,9 +90,9 @@
         }
 
         .icono-mesa {
-            width: 250px; /* Ajusta el tamaño de la imagen según tu preferencia */
-            height: 250px; /* Ajusta el tamaño de la imagen según tu preferencia */
-            margin-bottom: 10px; /* Espacio entre la imagen y el botón */
+            width: 250px; 
+            height: 250px; 
+            margin-bottom: 10px; 
         }
 
         .boton-moderno {

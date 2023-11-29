@@ -73,14 +73,15 @@ namespace RESTO
                 {
                     servicioMesa.ReservarMesa(FechaReserva, numeroMesa, dniCliente);
                     ReiniciarControles();
-                    lblMensajeExitoso.Text = "Tu reserva se realizó exitosamente!";
-                    
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Éxito', '¡La reserva a sido exitosa!', 'success');", true);
+
                 }
                 else
                 {
-                    lblMensajeValidacion.Text = "No es posible reservar en este horario.";
-                    
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'No es posible reservar en este horario', 'error');", true);
                 }
+
+
             }
 
         }
