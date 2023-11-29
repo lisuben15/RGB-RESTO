@@ -170,6 +170,22 @@ namespace RESTO
                 }
             }
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string busqueda=txtBuscar.Text;
+            ServicioMenu servicioMenu = new ServicioMenu();
+            List<ElementoMenu> listaMenusEncontrados = servicioMenu.ListarElementoMenuBuscado(busqueda);
+            if (listaMenusEncontrados.Count()>0)
+            {
+                dgvMenuPedidos.DataSource = listaMenusEncontrados;
+                dgvMenuPedidos.DataBind();
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', No se encontraron menus que coincidan con el termino ingresado.', 'error');", true);
+            }
+        }
         
         protected void btnVolver_Click(object sender, EventArgs e)
         {

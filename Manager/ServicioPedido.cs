@@ -53,7 +53,7 @@ namespace Manager
             try
             {
                 datos.setearProcedimiento("sp_QuitarDelPedido");
-                datos.setearParametros("@IdDetallePedido", IdDetallePedido);
+                datos.setearParametros("@IdDetallePediddo", IdDetallePedido);
                 datos.ejecutarAccion();
 
             }

@@ -12,6 +12,8 @@
             <asp:Button ID="btnCerrarPedido" runat="server" Text="Cerrar Pedido" OnClick="btnCerrarPedido_Click"  CssClass="boton-moderno" />
             <asp:Button ID="btnVolver" runat="server" Text="Volver" OnClick="btnVolver_Click" CssClass="boton-moderno" />
 
+            <asp:TextBox ID="txtBuscar" runat="server"></asp:TextBox>
+            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" CssClass="boton-moderno" />
        </div>
     <div>   
         <asp:Label ID="lblDniCliente" runat="server" Text="NÚMERO DE RESERVA: "></asp:Label>
