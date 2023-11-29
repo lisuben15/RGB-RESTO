@@ -198,46 +198,6 @@ namespace Manager
                 datos.cerrarConexion();
             }
         }
-        
-
-        
-        public List<ElementoMenu> ListarElementoMenuBuscado(string busqueda)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            List<ElementoMenu> lista = new List<ElementoMenu>();
-            try
-            {
-                datos.setearProcedimiento("sp_BuscarMenu");
-                datos.setearParametros("@busqueda", busqueda);
-                datos.ejecutarLectura();
-                while (datos.Lector.Read())
-                {
-
-                    ElementoMenu aux = new ElementoMenu();
-                    aux.IdMenu = (int)datos.Lector["IdMenu"];                // Mapear
-                    aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.Precio = (decimal)datos.Lector["Precio"];
-                    aux.Categoria = new Categoria();
-                    aux.Categoria.IdCategoria = (int)datos.Lector["IdCategoria"];
-                    aux.Categoria.Descripcion = (string)datos.Lector["DescripcionCategoria"];
-                    aux.RequiereStock = (bool)datos.Lector["RequiereStock"];
-                    aux.Stock = (int)datos.Lector["Stock"];
-
-                    lista.Add(aux);
-                }
-                return lista;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-
 
 
 
