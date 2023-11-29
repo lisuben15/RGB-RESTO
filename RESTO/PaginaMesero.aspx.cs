@@ -54,35 +54,59 @@ namespace RESTO
 
         protected void btnReservar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text != string.Empty && txtHora.Text != string.Empty && txtMinutos.Text != string.Empty && ddlSeleccionMesa.SelectedValue != "0") {
-                string Fecha = Calendario.SelectedDate.ToString("dd/MM/yyyy");
-                string[] FechaCortada = Fecha.Split('/');
-                int dia = int.Parse(FechaCortada[0]);
-                int mes = int.Parse(FechaCortada[1]);
-                int año = int.Parse(FechaCortada[2]);
-                int Hora = int.Parse(txtHora.Text);
-                int Minutos = int.Parse(txtMinutos.Text);
-                string dniCliente = txtNombre.Text;
-                DateTime FechaReserva = new DateTime(año, mes, dia, Hora, Minutos, 0);
+            int hora = int.Parse(txtHora.Text.ToString());
+            int minutos = int.Parse(txtMinutos.Text.ToString());
+           
+            int numeroMesax = Convert.ToInt32(ddlSeleccionMesa.SelectedValue);
+            
 
-                int numeroMesa = Convert.ToInt32(ddlSeleccionMesa.SelectedValue);
+            if (Calendario.SelectedDate != null && numeroMesax > 0) {
 
-                ServicioMesa servicioMesa = new ServicioMesa();
-
-                if (!servicioMesa.ExisteReserva(numeroMesa, FechaReserva))
+                if (hora >= 8 && hora < 24 && minutos >= 00 && minutos < 60)
                 {
-                    servicioMesa.ReservarMesa(FechaReserva, numeroMesa, dniCliente);
-                    ReiniciarControles();
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Éxito', '¡La reserva a sido exitosa!', 'success');", true);
+                    if (txtNombre.Text != string.Empty && txtHora.Text != string.Empty && txtMinutos.Text != string.Empty && ddlSeleccionMesa.SelectedValue != "0")
+                    {
+                        string Fecha = Calendario.SelectedDate.ToString("dd/MM/yyyy");
+                        string[] FechaCortada = Fecha.Split('/');
+                        int dia = int.Parse(FechaCortada[0]);
+                        int mes = int.Parse(FechaCortada[1]);
+                        int año = int.Parse(FechaCortada[2]);
+                        int Hora = int.Parse(txtHora.Text);
+                        int Minutos = int.Parse(txtMinutos.Text);
+                        string dniCliente = txtNombre.Text;
+                        DateTime FechaReserva = new DateTime(año, mes, dia, Hora, Minutos, 0);
 
+                        int numeroMesa = Convert.ToInt32(ddlSeleccionMesa.SelectedValue);
+
+                        ServicioMesa servicioMesa = new ServicioMesa();
+
+                        if (!servicioMesa.ExisteReserva(numeroMesa, FechaReserva))
+                        {
+                            servicioMesa.ReservarMesa(FechaReserva, numeroMesa, dniCliente);
+                            ReiniciarControles();
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Éxito', '¡La reserva a sido exitosa!', 'success');", true);
+
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'No es posible reservar en este horario', 'error');", true);
+                        }
+
+
+                    }
                 }
                 else
                 {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'No es posible reservar en este horario', 'error');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Hora o minuto incorrecto', 'error');", true);
                 }
 
-
             }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Mesa o Fecha no seleccionada', 'error');", true);
+            }
+
+            
 
         }
 

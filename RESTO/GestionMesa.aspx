@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
    
-    <h1>RGB Resto</h1>
+    <h1 class="text-center"  style="color: black" >Administrar Mesas</h1>
 
      <div style="display: flex; align-items: flex-start; flex-direction: column">
      <div style="margin-right: 20px; display: flex;">
@@ -13,7 +13,7 @@
          <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" CssClass="boton-moderno" />
          <asp:Button ID="btnAsignarMesa" runat="server" Text="Asignar Mesa" OnClick="btnAsignarMesa_Click" CssClass="boton-moderno"/>
          <asp:Button ID="btnDesasignarMesa" runat="server" Text="Desasignar Mesa" OnClick="btnDesasignarMesa_Click" CssClass="boton-moderno"/>
-         <asp:Button ID="btnDesasignarMesas" runat="server" Text="Desasignar Mesas" OnClick="btnDesasignarMesas_Click" CssClass="boton-moderno"/>
+         <asp:Button ID="btnDesasignarMesas" runat="server" Text="Desasignar Todas" OnClick="btnDesasignarMesas_Click" CssClass="boton-moderno"/>
     <%}%>
 
      </div>

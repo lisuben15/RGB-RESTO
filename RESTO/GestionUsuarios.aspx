@@ -13,7 +13,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Empleados</h2>
+    <h1 class="text-center"  style="color: black" >Empleados</h1>
     <div style="display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 20px;">
         <div style="margin-right: 20px;">
             <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" CssClass="boton-moderno" />

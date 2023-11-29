@@ -39,8 +39,8 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1> Gerentes</h1>
-    
+    <h1 class="text-center"  style="color: black" > Gerente</h1>
+    <br />
    <div class="image-container">
         <img src="https://tse3.mm.bing.net/th?id=OIP.7PCc9htegOc9b8SAI8ficAHaEI&pid=Api&P=0&h=180" alt="Imagen 1" class="overlay-image img1" />
         <img src="https://tse3.mm.bing.net/th?id=OIP.716Q9XIYIflTSb0gDX7Q7AHaE7&pid=Api&P=0&h=180" alt="Imagen 2" class="overlay-image img2" />

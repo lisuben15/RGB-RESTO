@@ -4,6 +4,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <br />
+    <h1 class="text-center"  style="color: black" > Administrar Menú</h1>
+    <br />
     <div style="display: flex; align-items: flex-start;">
         <div style="margin-right: 20px;">
             <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" CssClass="boton-moderno" />

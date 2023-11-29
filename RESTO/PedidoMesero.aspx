@@ -2,10 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Pedidos de Meseros</h1>
+    <h1 class="text-center" style="color: black" >Pedidos de Meseros</h1>
     <br />
 
-       <div style="margin-right: 20px;">
+       <div style="margin-right: 20px;" >
 
             
             <asp:Button ID="btnCrearPedido" runat="server" Text="Crear Pedido" OnClick="btnCrearPedido_Click" CssClass="boton-moderno" />
@@ -16,7 +16,7 @@
             <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" CssClass="boton-moderno" />
        </div>
     <div>   
-        <asp:Label ID="lblDniCliente" runat="server" Text="NÚMERO DE RESERVA: "></asp:Label>
+        <asp:Label  CssClass="Numero-Reserva" style="color: white" ID="lblDniCliente" runat="server" Text="NÚMERO DE RESERVA: "></asp:Label>
         <asp:TextBox ID="txtDniCliente" runat="server"></asp:TextBox>
         <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
     </div>
@@ -33,8 +33,10 @@
            </asp:GridView>
             </div>
     <div style="display: flex; justify-content: space-between">
-         <h2>Pedido: <asp:Label ID="lblIdPedido" runat="server"></asp:Label></h2> 
+
+         <h2 style="color: black" >  Pedido: <asp:Label ID="lblIdPedido" runat="server"></asp:Label></h2> 
          <asp:Label CssClass="total" ID="lblTotal" runat="server" Text="$0.00" ></asp:Label>
+
     </div>
            
         <div>
@@ -69,6 +71,10 @@
         font-weight: 700;
         text-shadow: 2px 2px 3px black;
         font-size: 32px;
+    }
+    .Numero-Reserva{
+        color: white;
+        background-color: black;
     }
 
 </style> 

@@ -91,7 +91,7 @@
         margin: 0 auto 20px;
         text-align: center;
         max-width: 80%;
-        color: black;
+        color: white;
         text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.5);
         font-size: 35px; 
     }
@@ -99,21 +99,21 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Reportes</h1>
+    <h1 class="text-center"  style="color: black" >Reportes</h1>
 
     <section style="display: flex; flex-direction: column; gap: 30px;">
         <div>
-            <h4>Historico/Diario</h4>
+            <h4 style="color: black" >Historico/Diario</h4>
             <asp:DropDownList ID="ddlReporteTimelapse" OnSelectedIndexChanged="ddlReporteTimelapse_SelectedIndexChanged" AutoPostBack="true" runat="server">   
                  <asp:ListItem Text="Historico" Value="0" />
                  <asp:ListItem Text="Dia de hoy" Value="1" />
             </asp:DropDownList>
 
-            <h4>Reporte por mesero</h4>
+            <h4 style="color: black" >Reporte por mesero</h4>
             <asp:DropDownList ID="ddlReporte" runat="server" OnSelectedIndexChanged="ddlReporte_SelectedIndexChanged" AutoPostBack="true" style="margin-bottom: 20px;"></asp:DropDownList>
-            <h4>Reporte por mesa</h4>
+            <h4 style="color: black" >Reporte por mesa</h4>
             <asp:DropDownList ID="ddlReporteMesa" runat="server" OnSelectedIndexChanged="ddlReporteMesa_SelectedIndexChanged" AutoPostBack="true" style="margin-bottom: 20px;"></asp:DropDownList>
-            <h2>Pedidos tomados</h2>
+            <h2 style="color: black" >Pedidos tomados</h2>
             <section>
                 <div class="scrollable-container">
                     <asp:GridView ID="dgvReporte" runat="server" AutoGenerateColumns="false" CssClass="table table-dark table-striped scrollable-grid">
