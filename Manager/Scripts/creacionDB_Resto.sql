@@ -790,6 +790,23 @@ END
 
 go
 
+
+create procedure sp_BuscarMenu(
+    @busqueda varchar (150) 
+)  AS  BEGIN    
+select *, c.Descripcion AS DescripcionCategoria 
+FROM Menu m 
+INNER JOIN Categorias c  on m.IdCategoria = c.IdCategoria 
+where m.Descripcion 
+like '%'+@busqueda+'%' 
+END
+
+
+
+go
+
+
+
 -- INSERTAR DATOS NECESARIOS
 
  insert into Categorias (IdCategoria,Descripcion)
