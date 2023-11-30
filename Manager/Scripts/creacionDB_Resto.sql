@@ -13,6 +13,7 @@ CREATE TABLE Categorias (
 )
 GO
 
+
 CREATE TABLE Menu(
   IdMenu int primary key identity (1,1),
   Descripcion varchar (250) not null,
@@ -27,8 +28,10 @@ CREATE TABLE EstadoMesa(
   IdEstadoMesa int primary key identity (1,1),
   Descripcion varchar (100)
 )
+
 GO
  
+
 CREATE TABLE Perfiles(
   IdPerfil int primary key identity(1,1),
   Descripcion varchar(100)
@@ -706,16 +709,20 @@ insert into FechasPedidos (IdPedido, Fecha, Hora) values (@IdPedido, @Fecha, @Ho
 GO
 
 
-create PROCEDURE sp_ValidarReserva(
+CREATE PROCEDURE sp_ValidarReserva(
    @NumeroMesa int,
   @FechaReserva DATETIME
 )
 AS
 BEGIN
-  select NumeroMesa  from Reservas 
-  WHERE NumeroMesa = @NumeroMesa 
-  AND ((@FechaReserva  BETWEEN FechaReserva and DATEADD(HOUR,2,FechaReserva) )
-  OR (DATEADD(HOUR,2,@FechaReserva)  BETWEEN FechaReserva and DATEADD(HOUR,2,FechaReserva)))
+  select r.NumeroMesa  from Reservas r
+  inner join Mesas m ON r.NumeroMesa = m.Idmesa
+  WHERE (
+         NumeroMesa = @NumeroMesa 
+         AND ((@FechaReserva  BETWEEN FechaReserva and DATEADD(HOUR,2,FechaReserva) )
+         OR (DATEADD(HOUR,2,@FechaReserva)  BETWEEN FechaReserva and DATEADD(HOUR,2,FechaReserva)))
+        )
+        OR NumeroMesa = @NumeroMesa and m.IdEstado = 1
 
 END
 
@@ -743,8 +750,11 @@ GO
 CREATE PROCEDURE sp_ListarReservas
 AS
 BEGIN
+  DECLARE @FechaActual DATE
+  set @FechaActual = getdate()
+
   SELECT  FechaReserva, NumeroMesa, dniCliente FROM Reservas
-  where FechaReserva >= getdate()
+  where CONVERT(DATE,FechaReserva) = @FechaActual
 END
 
 
@@ -767,3 +777,40 @@ BEGIN
 END
 
 GO
+
+
+CREATE PROCEDURE sp_ListarStock
+AS
+BEGIN
+ SELECT IdMenu, Descripcion, Stock from Menu 
+ where RequiereStock = 1 and Stock < 10
+
+END
+
+
+go
+
+-- INSERTAR DATOS NECESARIOS
+
+ insert into Categorias (IdCategoria,Descripcion)
+ VALUES (1,'Comida'),
+        (2,'Bebida'),
+        (3,'Postre')
+
+GO
+
+
+insert into EstadoMesa (IdEstadoMesa,Descripcion)
+VALUES (1,'Ocupada'),
+       (2,'Reservada'),
+       (3,'Libre')
+
+
+ GO
+
+
+insert into Perfiles (IdPerfil, Descripcion)
+VALUES (1,'Gerente'),
+       (2,'Mesero')
+
+go
