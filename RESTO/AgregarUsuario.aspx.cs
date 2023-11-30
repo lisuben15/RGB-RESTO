@@ -73,6 +73,20 @@ namespace RESTO
 
             usuario.Nombre = txtNombre.Text;
             usuario.Apellido = txtApellido.Text;
+            int entero;
+            if(!Int32.TryParse(txtDni.Text, out entero))
+            {
+                Response.Write("<script>alert('Por favor verifique el DNI ingresado.')</script>");
+                return;
+            }
+            else
+            {
+                if (txtDni.Text.Length<7 || txtDni.Text.Length> 8)
+                {
+                    Response.Write("<script>alert('Por favor verifique el DNI ingresado.')</script>");
+                    return;
+                }
+            }
             usuario.Dni = txtDni.Text;
             usuario.Perfil = new Perfil();
             usuario.Perfil.IdPerfil = int.Parse(ddlOpciones.SelectedValue);
