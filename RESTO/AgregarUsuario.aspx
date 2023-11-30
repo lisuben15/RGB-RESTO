@@ -46,22 +46,22 @@
     <h1> Empleados </h1>
 
     <div class="form-group">
-        <asp:Label ID="lblNombre" runat="server" Text="Nombre: "></asp:Label>
+        <asp:Label style="color: white" ID="lblNombre" runat="server" Text="Nombre: "></asp:Label>
         <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
     </div>
 
     <div class="form-group">
-        <asp:Label ID="lblApellido" runat="server" Text="Apellido: "></asp:Label>
+        <asp:Label style="color: white" ID="lblApellido" runat="server" Text="Apellido: "></asp:Label>
         <asp:TextBox ID="txtApellido" runat="server"></asp:TextBox>
     </div>
 
     <div class="form-group">
-        <asp:Label ID="lblDNI" runat="server" Text="** Dni **: "></asp:Label>
+        <asp:Label style="color: white" ID="lblDNI" runat="server" Text="** Dni **: "></asp:Label>
         <asp:TextBox ID="txtDni" runat="server"></asp:TextBox>
     </div>
 
     <div class="form-group">
-        <asp:Label ID="lblOpciones" runat="server" Text="** Rol**:"></asp:Label>
+        <asp:Label style="color: white" ID="lblOpciones" runat="server" Text="** Rol**:"></asp:Label>
         <asp:DropDownList ID="ddlOpciones" runat="server">
         </asp:DropDownList>
     </div>

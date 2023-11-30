@@ -48,22 +48,22 @@
          <h1> Agregado/Modificación del Menú</h1>
 
     <div class="form-group">
-        <asp:Label ID="lblDescripcion" runat="server" Text="   Descripcion: "></asp:Label>
+        <asp:Label style="color: white" ID="lblDescripcion" runat="server" Text="   Descripcion: "></asp:Label>
         <asp:TextBox ID="txtDescripcion" runat="server"></asp:TextBox>
     </div>
 
     <div class="form-group">
-        <asp:Label ID="lblPrecio" runat="server" Text="  ** Precio **: "></asp:Label>
+        <asp:Label style="color: white" ID="lblPrecio" runat="server" Text="  ** Precio **: "></asp:Label>
         <asp:TextBox ID="txtPrecio" runat="server"></asp:TextBox>
     </div>
 
     <div class="form-group">
-        <asp:Label ID="lblOpciones" runat="server" Text="Tipo de Menú: "></asp:Label>
+        <asp:Label  style="color: white" ID="lblOpciones" runat="server" Text="Tipo de Menú: "></asp:Label>
         <asp:DropDownList ID="ddlOpciones" runat="server" AutoPostBack="true"> </asp:DropDownList>
     </div>
 
     <div class="form-group">
-        <asp:Label ID="lblRequiereStock" runat="server" Text="Requiere Stock: " ></asp:Label>
+        <asp:Label style="color: white" ID="lblRequiereStock" runat="server" Text="Requiere Stock: " ></asp:Label>
         <asp:DropDownList ID="ddlRequiereStock" runat="server">   
             <asp:ListItem Text="No" Value="FALSE" />
             <asp:ListItem Text="Si" Value="TRUE" />
@@ -71,7 +71,7 @@
     </div>
 
     <div class="form-group">
-        <asp:Label ID="LblStock" runat="server" Text="   ** Stock **: "></asp:Label>
+        <asp:Label style="color: white" ID="LblStock" runat="server" Text="   ** Stock **: "></asp:Label>
         <asp:TextBox ID="txtStock" runat="server"></asp:TextBox>
     </div>
 

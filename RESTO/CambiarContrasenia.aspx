@@ -29,24 +29,28 @@
     }
 </style>
 
+   
 
-    <div class="input-container">
-        <asp:Label ID="Label1" runat="server" Text="Dni" CssClass="input-label"></asp:Label>
-        <asp:TextBox ID="txtDNI" runat="server" type="text" ReadOnly="true"></asp:TextBox>
-    </div>
-     <div class="input-container">
-         <asp:Label ID="Label2" runat="server" Text="Nueva Contraseña" CssClass="input-label"></asp:Label>
-         <asp:TextBox ID="txtPassword" runat="server" type="password"></asp:TextBox>
-     </div>
-    <div class="input-container">
-         <asp:Label ID="Label" runat="server" Text="Reingrese Contraseña" CssClass="input-label"></asp:Label>
-         <asp:TextBox ID="txtPasswordConfirmation" runat="server" type="password"></asp:TextBox>
-     </div>
+                    <div class="input-container">
+                <asp:Label  style="color: black" ID="Label1" runat="server" Text="Dni" CssClass="input-label"></asp:Label>
+                <asp:TextBox ID="txtDNI" runat="server" type="text" ReadOnly="true"></asp:TextBox>
+            </div>
+             <div class="input-container">
+                 <asp:Label style="color: black" ID="Label2" runat="server" Text="Nueva Contraseña" CssClass="input-label"></asp:Label>
+                 <asp:TextBox ID="txtPassword" runat="server" type="password"></asp:TextBox>
+             </div>
+            <div class="input-container">
+                 <asp:Label style="color: black" ID="Label" runat="server" Text="Reingrese Contraseña" CssClass="input-label"></asp:Label>
+                 <asp:TextBox ID="txtPasswordConfirmation" runat="server" type="password"></asp:TextBox>
+             </div>
 
 
-    <div>
-        <asp:Button CssClass="boton-moderno" ID="btnCambiarPass" runat="server" Text="Cambiar contraseña" OnClick="btnCambiarPass_Click"/>
-    </div>
+            <div>
+                <asp:Button CssClass="boton-moderno" ID="btnCambiarPass" runat="server" Text="Cambiar contraseña" OnClick="btnCambiarPass_Click"/>
+            </div>
+
+   
+    
      
 
 
