@@ -67,12 +67,13 @@ namespace RESTO
                 int Hora = int.Parse(txtHora.Text);
                 int Minutos = int.Parse(txtMinutos.Text);
                 string dniCliente = txtNombre.Text;
-                DateTime FechaReserva = new DateTime(año, mes, dia, Hora, Minutos, 0);
+              
 
                 int numeroMesa = Convert.ToInt32(ddlSeleccionMesa.SelectedValue);
 
                 if (Hora >= 8 && Hora < 24 && Minutos >= 00 && Minutos < 60)
                 {
+                    DateTime FechaReserva = new DateTime(año, mes, dia, Hora, Minutos, 0);
                     ServicioMesa servicioMesa = new ServicioMesa();
 
                     if (!servicioMesa.ExisteReserva(numeroMesa, FechaReserva))
@@ -80,13 +81,19 @@ namespace RESTO
                         servicioMesa.ReservarMesa(FechaReserva, numeroMesa, dniCliente);
                         ReiniciarControles();
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Éxito', '¡La reserva a sido exitosa!', 'success');", true);
+                        dgvReservas.DataSource = servicioMesa.ListarMesasReservadas();
+                        dgvReservas.DataBind();
 
                     }
                     else
                     {
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'No es posible reservar en este horario', 'error');", true);
                     }
-                }               
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "Swal.fire('Error', 'Hora o minutos inválidos', 'error');", true);
+                }              
             }
         }
 
