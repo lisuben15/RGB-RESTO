@@ -37,9 +37,35 @@ namespace RESTO
                 }
             }
         }
+        protected bool ValidarCamposVacios(TextBox[] textBox)
+        {
+            foreach (TextBox txt in textBox)
+            {
+                if (string.IsNullOrWhiteSpace(txt.Text))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
+            TextBox[] textBoxs = { txtDescripcion, txtPrecio };
+            if (ValidarCamposVacios(textBoxs))
+            {
+                Response.Write("<script>alert('Por favor complete todos los datos para crear el menu.')</script>");
+                return;
+            }
+            decimal nro;
+            if(!Decimal.TryParse(txtPrecio.Text, out nro))
+            {
+                Response.Write("<script>alert('Por favor verifique el precio ingresado.')</script>");
+                return;
+            }
+
+
             ServicioMenu servicioMenu = new ServicioMenu();
             ElementoMenu elementoMenu = new ElementoMenu();
 
@@ -50,7 +76,16 @@ namespace RESTO
             elementoMenu.RequiereStock = (bool.Parse(ddlRequiereStock.SelectedValue));
             if (txtStock.Text.Length!=0)
             {
-                elementoMenu.Stock = int.Parse(txtStock.Text);
+                int entero;
+                if(!Int32.TryParse(txtStock.Text, out entero))
+                {
+                    Response.Write("<script>alert('Por favor verifique el stock ingresado.')</script>");
+                    return;
+                }
+                else
+                {
+                    elementoMenu.Stock = int.Parse(txtStock.Text);
+                }
             }
             else
             {

@@ -45,8 +45,28 @@ namespace RESTO
             }
         }
 
+        protected bool ValidarCamposVacios(TextBox[] textBox)
+        {
+            foreach (TextBox txt in textBox)
+            {
+                if (string.IsNullOrWhiteSpace(txt.Text))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            TextBox[] textBoxs = { txtNombre, txtApellido, txtDni };
+            if (ValidarCamposVacios(textBoxs))
+            {
+                Response.Write("<script>alert('Por favor complete todos los datos para crear el usuario.')</script>");
+                return;
+            }
+
+            
             ServicioUsuario servicioUsuario = new ServicioUsuario();
 
             Usuario usuario = new Usuario();
